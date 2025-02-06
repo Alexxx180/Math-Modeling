@@ -1,0 +1,10 @@
+{
+    "Variants": "switch/variants",
+    "Enabled": "switch/enabled",
+    "Hints": "switch/hints",
+    "Fields": "texts/fields",
+    "Texts": "texts/labels",
+	"Formula": {
+		"table": "formula/continuous"
+	}
+}
