@@ -28,15 +28,19 @@ class RandomDistribution:
 
     def output_first_quantity(self) -> None:
         columns: int = 10
+        q: int = self.quantity
         table_length: int = int(self.quantity / columns)
+        if self.quantity % columns != 0:
+            table_length += 1
         for r in range(table_length):
             row: list = []
-            for c in range(columns):
+            for c in range(min(q, columns)):
                 i: int = self.i[r * columns + c]
                 row.append(self.math.x[i])
             for i in range(len(row), columns):
-                row.append(0)
+                row.append('') # 0
             self.matrix.append(row)
+            q -= columns
 
     def sigma(self, formula) -> None: # Σ
         for j in range(self.numbers): formula(self.i[j])
