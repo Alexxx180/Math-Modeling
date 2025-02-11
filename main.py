@@ -30,7 +30,7 @@ def resource(file):
 def main() -> None:
     manifest: dict = Resources.at('resources/manifest.json')
 
-    for name in ('Texts', 'Fields', 'Hints', 'Enabled', 'Formula'):
+    for name in ('Texts', 'Fields', 'Hints', 'Enabled', 'Formula', 'Defaults'):
         setattr(Resources, name, resource(manifest[name]))
 
 if __name__ == '__main__':

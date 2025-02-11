@@ -8,15 +8,14 @@ class Text:
         self.fields: dict = Resources.Fields[name]
         self.p = Printer(name).act(print)
 
-    def table(self, args: list) -> None:
-        self.p.keys("Table")
-        pass
+    def table(self, args) -> None:
+        self.p.keys("Table").args(args).print()
 
     def research(self, initial) -> None:
         self.p.keys('Research').args(initial).print()
 
     def source(self, matrix) -> None:
-        Table(self.fields.copy()).rows(matrix).show()
+        Table(self.fields["Source"].copy()).rows(matrix).show()
         return self
 
     def pause(self, text: str = '') -> None:

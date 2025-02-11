@@ -20,7 +20,7 @@ def dropdown():
         answers = ask(Resources.Main)
     print(Resources.Texts['Common']['Finished'])
 
-def setup_options()
+def setup_options():
     options: dict = Resources.at('resources/switch/choices/options.json')
     for method, choices in options['choices'].items():
         Resources.Options[method] = [List(method, message=options['message'], choices=choices)]

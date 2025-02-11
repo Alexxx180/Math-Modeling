@@ -1,10 +1,8 @@
 from common.handlers.interaction import ask
-from menu.rauss.entry import RaussEntry
-from menu.hurwitz.entry import HurwitzEntry
+from menu.table.entry import RandomTableEntry
 
 invoke: dict = {
-    'rauss': RaussEntry,
-    'hurwitz': HurwitzEntry,
+    'table': RandomTableEntry,
 }
 
 def select(query: str, choices: dict, options: dict):

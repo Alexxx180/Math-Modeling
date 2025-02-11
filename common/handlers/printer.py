@@ -9,6 +9,7 @@ class Printer:
         field = Resources.Texts[self.name]
         for key in keys:
             field = field[key]
+
         return field
 
     def edit(self, position: int, key: str):
