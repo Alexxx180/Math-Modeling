@@ -7,23 +7,20 @@ This program takes a probability value table, generate random numbers.
 Then calculate math expectation, dispersia, and evaluate both results
 """
 def RandomTableReverseMethod(name: str, args: list) -> None:
-    table = get_table(args)
-    text = Text(name)
-    text.table(table)
-    text.research(table.math)
+	table = RandomDistribution(args).start()
+	text = Text(name)
+	text.table(table)
+	text.research(table.math)
 
-    if View('Table', name):
-        text.source(table.matrix)
+	if View('Table', name):
+		text.source(table.init.r)
 
-    text.pause()
+	text.pause()
 
 def get_result(args: list) -> str:
-    table = get_table(args)
-    m: dict = table.m
-    return " - ".join([m["expect"], m["dispersia"], str(table.matrix)])
-
-def get_table(args: list):
-    table = RandomDistribution(args)
-    table.generate_random()
-    table.output_first_quantity()
-    return table
+	table = RandomDistribution(args).start()
+	math = table.math
+	init = table.init
+	result: list = [math.expect, math.dispersia, math.eval, math.ground]
+	result.extend([init.numbers, init.quantity, str(math.x), str(math.p), str(init.r)])
+	return " - ".join(result)

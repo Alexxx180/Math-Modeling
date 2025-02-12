@@ -1,9 +1,9 @@
 {
-    "Variants": "switch/variants",
-    "Enabled": "switch/enabled",
-    "Hints": "switch/hints",
-    "Fields": "texts/fields",
-    "Texts": "texts/labels",
+	"Variants": "switch/variants",
+	"Enabled": "switch/enabled",
+	"Hints": "switch/hints",
+	"Fields": "texts/fields",
+	"Texts": "texts/labels",
 	"Formula": {
 		"continuous": ["formula/continuous", 40]
 	},
