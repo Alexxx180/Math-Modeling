@@ -2,6 +2,8 @@ from typing import Callable
 
 class RandomCalculus:
 	def __init__(self, x: list, p: list) -> None:
+		self.expecting = None     # expectation lambda
+        self.dispersing = None    # dispersia lambda
 		self.eval: float = 0      # m - math evaluation
 		self.ground: float = 0    # g - dispersia evaluation
 		self.expect: float = 0    # M - math expectation

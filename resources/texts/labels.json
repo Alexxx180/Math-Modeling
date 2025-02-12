@@ -15,6 +15,7 @@
 	},
 	"model": {
 		"Full Name": "Непрерывные случайные величины",
-		"Research": "Коэффициенты: {0.c}"
+		"Table": "Дано: N = {0.init.numbers}, q = {0.init.quantity}, X = {0.math.x}, p = {0.math.p}",
+		"Research": "Коэффициенты:  M = {0.expect}, D = {0.dispersia}, m = {0.eval}, g = {0.ground}"
 	}
 }

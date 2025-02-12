@@ -35,8 +35,16 @@ class RandomSelection:
 			q -= columns
 
 	def calculate(self, math) -> None:
-		self.sigma(lambda i: math.expectation(i))
-		self.sigma(lambda i: math.get_dispersia(i))
+		if math.expecting == None:
+			self.sigma(lambda i: math.expectation(i))
+		else:
+			math.expecting()
+
+		if math.dispercing == None:
+			self.sigma(lambda i: math.get_dispersia(i))
+		else:
+			math.dispercing()
+
 		self.sigma(lambda i: math.evaluation(i))
 		math.evaluation_end(self.numbers)
 		self.sigma(lambda i: math.dispersia_ground(i))

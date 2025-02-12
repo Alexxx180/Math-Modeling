@@ -24,3 +24,6 @@ def invokation(derive, *symbols) -> callable:
 		return lambda x: 0
 	#print(derive)
 	return lambdify(symbols, derive)
+
+def integral(formula: str) -> callable:
+    return lambdify(integrate(formula))
