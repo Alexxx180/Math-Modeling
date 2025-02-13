@@ -1,4 +1,5 @@
 from sympy import Symbol, integrate
+from sympy.abc import x
 from sympy.utilities import lambdify
 from sympy.parsing.sympy_parser import parse_expr
 
@@ -19,11 +20,12 @@ def formulate(text, count: int, *symbols) -> str:
 
 	return derivative
 
-def invokation(derive, *symbols) -> callable:
-	if derive == '0':
-		return lambda x: 0
-	#print(derive)
-	return lambdify(symbols, derive)
+def invokation(expression, *symbols) -> callable:
+	match expression:
+		case '0':
+			return lambda x: 0
+		case _:
+			return lambdify(symbols, expression)
 
-def integral(formula: str) -> callable:
-    return lambdify(integrate(formula))
+def integral(formula: str, ab: tuple) -> callable:
+	return integrate(formula, (x, ab[0], ab[1]))

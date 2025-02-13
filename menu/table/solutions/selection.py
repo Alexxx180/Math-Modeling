@@ -38,12 +38,12 @@ class RandomSelection:
 		if math.expecting == None:
 			self.sigma(lambda i: math.expectation(i))
 		else:
-			math.expecting()
+			math.expect = math.expecting()
 
-		if math.dispercing == None:
+		if math.dispersing == None:
 			self.sigma(lambda i: math.get_dispersia(i))
 		else:
-			math.dispercing()
+			math.dispersia = math.dispersing()
 
 		self.sigma(lambda i: math.evaluation(i))
 		math.evaluation_end(self.numbers)

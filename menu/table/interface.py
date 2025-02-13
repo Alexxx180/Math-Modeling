@@ -1,18 +1,13 @@
 from common.commander.switch import View
 from common.flow.texts.table import Text
 from menu.table.solutions.solution import RandomDistribution
-from common.calculus.trigonometry import form, invokation, express, integral
 
 """
 This program takes a probability value table, generate random numbers.
 Then calculate math expectation, dispersia, and evaluate both results
 """
-def RandomModelReverseMethod(name: str, args: list) -> None:
-    formula: str = Resources.Formula["Continuous"]
-
+def RandomTableReverseMethod(name: str, args: list) -> None:
 	table = RandomDistribution(args).start()
-	integral(formula)
-
 	text = Text(name)
 	text.table(table)
 	text.research(table.math)
