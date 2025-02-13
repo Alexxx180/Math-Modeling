@@ -1,10 +1,12 @@
-from sympy.abc import i, x, y
+from sympy.abc import x, r
 from sympy import solve
 from common.commander.switch import View
 from common.flow.texts.table import Text
 from menu.table.solutions.solution import RandomDistribution
 from common.calculus.trigonometry import form, invokation, express, integral
 from common.commander.resources import Resources
+
+POSITIVE: int = 1
 
 """
 This program takes a probability value table, generate random numbers.
@@ -14,22 +16,20 @@ def RandomModelReverseMethod(name: str, args: list) -> None:
 	ab: tuple = (1, 2)
 	formula: str = Resources.Formula["continuous"]
 	print("Formula: ", formula)
-	r = integral(express("x * (" + formula + ")"), ab)
-	print("Formula: ", r)
+	inverse = solve(express(formula) - r, x)[POSITIVE]
+	print("Inverse: ", str(inverse))
+	result = integral(express("x * (" + formula + ")"), ab)
+	print("Integral: ", result)
 
-	f1: str = solve(express(formula) - i, x)
-	sol = solve(express(formula + "- i"), x)
-#	f1: str = sol[0].subs(i, x)
-#	f1 = sol
-	print("Inverse: ", f1)
 	f: str = "(x ** 2) * (" + formula + ")"
-# Sol # 1
-# >>> g(x, y)  # g(x, y)
-# >>> _.func(*_.args[::-1])  # g(y, x)
+	invf = invokation(express(str(inverse)))
+	print("Inverse result: ", invf(1))
 
-	table = RandomDistribution(args).start()
-	table.expecting = lambda: r
+	table = RandomDistribution(args)
+	table.method = lambda v: invf(v)
+	table.expecting = lambda: result
 	table.dispersing = lambda: integral(express(f), ab) - table.math.expect ** 2
+	table.start()
 	text = Text(name)
 	text.table(table)
 	text.research(table.math)

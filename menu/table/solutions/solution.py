@@ -5,6 +5,7 @@ class RandomDistribution:
 	def __init__(self, args: dict) -> None:
 		self.math = RandomCalculus(args["X"], args["p"])
 		self.init = RandomSelection(args["N"], args["q"])
+		self.method = self.reverse_method
 
 	def reverse_method(self, value: float) -> float:
 		i: int = len(self.math.p)
@@ -24,6 +25,6 @@ class RandomDistribution:
 		for j in range(self.numbers): formula(self.i[j])
 
 	def start(self):
-		self.init.generate_random(self.reverse_method)
+		self.init.generate_random(self.method)
 		self.init.calculate(self.math)
 		return self
