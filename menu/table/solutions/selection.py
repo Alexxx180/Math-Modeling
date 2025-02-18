@@ -7,13 +7,15 @@ class RandomSelection:
 		self.numbers: int = n  # 100 # N
 		self.quantity: int = q # 14 # q
 
-	def generate_values(self, method) -> None:
+	def generate_values(self, method) -> list:
 		existing: dict = {}
 		x: list = []
 		j: int = 0
 		self.i: list = []
 		for i in range(self.numbers):
 			r: float = method(random())
+			#print("r: ", r)
+			#print("ex: ", existing)
 			if not r in existing:
 				existing[r] = j
 				x.append(r)

@@ -11,9 +11,12 @@ class RandomModel:
 		self.get_inverse().expectation().dispersia()
 
 	def get_inverse(self):
-		self.inverse = solve(express(self.f) - r, x)
-		if len(self.inverse) > 1:
-			self.inverse = self.inverse[self.POSITIVE]
+		inverse: list = solve(express(self.f) - r, x)
+		if len(inverse) > self.POSITIVE:
+			self.inverse = inverse[self.POSITIVE]
+		else:
+			self.inverse = inverse[0]
+		# print("INVER: ", self.inverse)
 		self.G = str(self.inverse)
 		self.method = lambdify(r, express(self.G), "numpy")
 		return self
