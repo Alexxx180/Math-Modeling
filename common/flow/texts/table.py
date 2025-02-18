@@ -10,9 +10,15 @@ class Text:
 
 	def table(self, args) -> None:
 		self.p.keys("Table").args(args).print()
+		return self
+
+	def formula(self, args) -> None:
+		self.p.keys("Formula").args(args).print()
+		return self
 
 	def research(self, initial) -> None:
 		self.p.keys('Research').args(initial).print()
+		return self
 
 	def source(self, matrix) -> None:
 		Table(self.fields["Source"].copy()).rows(matrix).show()

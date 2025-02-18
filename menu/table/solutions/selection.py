@@ -7,6 +7,22 @@ class RandomSelection:
 		self.numbers: int = n  # 100 # N
 		self.quantity: int = q # 14 # q
 
+	def generate_values(self, method) -> None:
+		existing: dict = {}
+		x: list = []
+		j: int = 0
+		self.i: list = []
+		for i in range(self.numbers):
+			r: float = method(random())
+			if not r in existing:
+				existing[r] = j
+				x.append(r)
+				self.i.append(j)
+				j += 1
+			else:
+				self.i.append(existing[r])
+		return x
+
 	def generate_random(self, method) -> None:
 		self.i = [method(random()) for i in range(self.numbers)]
 
@@ -21,12 +37,16 @@ class RandomSelection:
 
 		if q % columns != 0: table_length += 1
 
+		x = math.x
+		if hasattr(math, 'xf'):
+			x = math.xf
+
 		for r in range(table_length):
 			row: list = []
 
 			for c in range(min(q, columns)):
 				i: int = self.i[r * columns + c]
-				row.append(math.x[i])
+				row.append(x[i])
 
 			for i in range(len(row), columns):
 				row.append(table["No-value"])
@@ -43,7 +63,7 @@ class RandomSelection:
 		if math.dispersing == None:
 			self.sigma(lambda i: math.get_dispersia(i))
 		else:
-			math.dispersia = math.dispersing()
+			math.dispersia = math.dispersing(math.expect)
 
 		self.sigma(lambda i: math.evaluation(i))
 		math.evaluation_end(self.numbers)

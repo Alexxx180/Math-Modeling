@@ -11,11 +11,12 @@
 	"table": {
 		"Full Name": "Дискретныe случайные величины",
 		"Table": "Дано: N = {0.init.numbers}, q = {0.init.quantity}, X = {0.math.x}, p = {0.math.p}",
-		"Research": "Коэффициенты:  M = {0.expect}, D = {0.dispersia}, m = {0.eval}, g = {0.ground}"
+		"Research": "Коэффициенты:  M = {0.expect:.8}, D = {0.dispersia:.8}, m = {0.eval:.8}, g = {0.ground:.8}"
 	},
-	"model": {
+	"continuous": {
 		"Full Name": "Непрерывные случайные величины",
-		"Table": "Дано: N = {0.init.numbers}, q = {0.init.quantity}, X = {0.math.x}, p = {0.math.p}",
-		"Research": "Коэффициенты:  M = {0.expect}, D = {0.dispersia}, m = {0.eval}, g = {0.ground}"
+		"Formula": "Функция: {0.f}, Обратная: {0.G}",
+		"Table": "Дано: N = {0.init.numbers}, q = {0.init.quantity}, X = {0.math.xf}",
+		"Research": "Коэффициенты:  M = {0.expect:.8}, D = {0.dispersia:.8}, m = {0.eval:.8}, g = {0.ground:.8}"
 	}
 }
