@@ -26,10 +26,10 @@ namespace WisdomLight.ViewModel.Components.Data
 		private ListExpression _data;
 		public ListExpression Data
 		{
-			get => _mathVariables;
+			get => _data;
 			set
 			{
-				_mathVariables = value;
+				_data = value;
 				OnPropertyChanged();
 			}
 		}
@@ -37,10 +37,10 @@ namespace WisdomLight.ViewModel.Components.Data
 		private GridExpression _result;
 		public GridExpression Result
 		{
-			get => _grid;
+			get => _result;
 			set
 			{
-				_grid = value;
+				_result = value;
 				OnPropertyChanged();
 			}
 		}

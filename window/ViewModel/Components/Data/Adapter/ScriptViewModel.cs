@@ -1,5 +1,7 @@
+using System.IO;
 using System.Collections.ObjectModel;
 using WisdomLight.ViewModel.Components.Data.Fields;
+using WisdomLight.ViewModel;
 
 namespace WisdomLight.ViewModel.Components.Data.Adapter
 {
@@ -22,8 +24,9 @@ namespace WisdomLight.ViewModel.Components.Data.Adapter
 		{
 			_result.Name = field;
 			foreach(string text in output)
-				List<string> _result = new List<string>();
-				foreach(string cell in text.Split(_list))
+				List<string> result = new List<string>();
+				string[] cells = text.Split(_list);
+				foreach(string cell in cells)
 					result.Add(cell);
 				_result.No.Add(result);
 		}
@@ -40,7 +43,7 @@ namespace WisdomLight.ViewModel.Components.Data.Adapter
 			_calculus.Add(new NumberExpression(field, output));
 		}
 
-		public FileViewModel GetModel(string output)
+		public FileViewModel GetModel(string output, string kind)
 		{
 			if (output == string.Empty)
 				return FileViewModel.Default;
@@ -53,7 +56,7 @@ namespace WisdomLight.ViewModel.Components.Data.Adapter
 			};
 			_result = new GridExpression();
 
-			string[] fields = GetLines($"{kind}/fields.txt");
+			string[] fields = Defaults.GetLines($"{kind}/fields.txt");
 			string[] values = output.Split(" - ");
 
 			int length = values.Length;
@@ -77,9 +80,9 @@ namespace WisdomLight.ViewModel.Components.Data.Adapter
 			return new FileViewModel($"{kind}/config.txt")
 			{
 				Data = new TemplateViewModel() {
-					Calculus = calculus,
-					Data = data,
-					Result = result
+					Calculus = _calculus,
+					Data = _data,
+					Result = _result
 				}
 			};
 		}
@@ -90,9 +93,9 @@ namespace WisdomLight.ViewModel.Components.Data.Adapter
 
 			foreach(string kind in kinds)
 				if (parser.HasError(kind))
-					model.Add(FileViewModel.Default);
+					_model.Add(FileViewModel.Default);
 				else
-					model.Add(GetModel(parser.Output(kind)));
+					_model.Add(GetModel(parser.Output(kind), kind));
 
 			return new MainViewModel { Model = model };
 		}

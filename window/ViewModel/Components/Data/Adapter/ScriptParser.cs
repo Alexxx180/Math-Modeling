@@ -25,8 +25,8 @@ namespace WisdomLight.ViewModel.Components.Data.Adapter
 			_result = new Dictionary<string, string>();
 			_error = new Dictionary<string, string>();
 
-			_script = NoPath(Search.File(_app, _script), nameof(script));
-			_interpreter = NoPath(Search.Python(_app), nameof(interpreter));
+			_script = NoPath(Search.File(_app, _script), nameof(_script));
+			_interpreter = NoPath(Search.Python(_app), nameof(_interpreter));
 		}
 
 		private bool NoPath(string path, string name)

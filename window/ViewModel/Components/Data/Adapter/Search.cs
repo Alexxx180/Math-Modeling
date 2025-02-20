@@ -7,7 +7,7 @@ namespace WisdomLight.ViewModel.Components.Data.Adapter
 		public static int Variant()
 		{
 			string variantPath = Search.File("project", "variant.txt");
-			WriteLine("Path to variant: ", variantPath);
+			Console.WriteLine("Path to variant: ", variantPath);
 			return (int)File.ReadAllText(variantPath);
 		}
 
