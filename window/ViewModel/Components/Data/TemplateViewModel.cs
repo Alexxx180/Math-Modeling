@@ -6,24 +6,8 @@ namespace WisdomLight.ViewModel.Components.Data
 {
 	public class TemplateViewModel : NameLabel
 	{
-		private string Kind { get; }
-
-		public TemplateViewModel(string kind) {
-			Kind = kind;
-			// var parser 
-
-			ObservableCollection<NumberExpression> calculus = new ObservableCollection<NumberExpression>();
-			ObservableCollection<NumberExpression> randomValues = new ObservableCollection<NumberExpression>();
-
-			string[] lines = File.ReadAllLines($"{Runtime}/{kind}.txt");
-			string[] 
-
-			foreach(string field in lines) {
-				calculus.Add(new NumberExpression(field, ));
-			}
-
-			Calculus = calculus;
-			RandomValues = RandomValues;
+		public TemplateViewModel(string name) {
+			Name = name;
 		}
 
 		private ObservableCollection<NumberExpression> _calculus;
@@ -37,8 +21,8 @@ namespace WisdomLight.ViewModel.Components.Data
 			}
 		}
 
-		private ListExpression _values;
-		public ListExpression Values
+		private ListExpression _data;
+		public ListExpression Data
 		{
 			get => _mathVariables;
 			set
@@ -48,8 +32,8 @@ namespace WisdomLight.ViewModel.Components.Data
 			}
 		}
 
-		private GridExpression _grid;
-		public GridExpression Grid
+		private GridExpression _result;
+		public GridExpression Result
 		{
 			get => _grid;
 			set
