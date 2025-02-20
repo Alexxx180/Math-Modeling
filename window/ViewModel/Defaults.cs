@@ -1,7 +1,8 @@
 ﻿using System;
 using System.IO;
+using System.Collections.Generic;
 
-namespace WisdomLight.ViewModel.Components.Building.Bank
+namespace WisdomLight.ViewModel
 {
     public static class Defaults
     {

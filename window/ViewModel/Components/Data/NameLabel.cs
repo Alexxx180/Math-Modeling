@@ -1,9 +1,9 @@
-﻿namespace WisdomLight.ViewModel.Components.Data.Units
+﻿namespace WisdomLight.ViewModel.Components.Data
 {
-    public abstract class NameLabel : NotifyPropertyChanged
+    public class NameLabel : NotifyPropertyChanged
     {
         private string _name;
-        public virtual string Name
+        public string Name
         {
             get => _name;
             set

@@ -1,15 +1,12 @@
 ﻿using System.Linq;
 using System.Windows.Input;
+using System.Collections.ObjectModel;
 
 namespace WisdomLight.ViewModel.Components
 {
 	public class MainViewModel : NotifyPropertyChanged
 	{
-		public MainViewModel() {
-			Data = new ObservableCollection<FileViewModel>();
-			Data.Add(new FileViewModel("table/config.txt"));
-			Data.Add(new FileViewModel("model/config.txt"));
-		}
+		public MainViewModel() {}
 
 		public ObservableCollection<FileViewModel> Data { get; set; }
 	}

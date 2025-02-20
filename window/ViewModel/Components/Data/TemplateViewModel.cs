@@ -1,11 +1,13 @@
 ﻿using System.IO;
 using System.Collections.Generic;
-using WisdomLight.ViewModel.Components.Data.Units;
+using System.Collections.ObjectModel;
+using WisdomLight.ViewModel.Components.Data.Fields;
 
 namespace WisdomLight.ViewModel.Components.Data
 {
 	public class TemplateViewModel : NameLabel
 	{
+		public TemplateViewModel() {}
 		public TemplateViewModel(string name) {
 			Name = name;
 		}
