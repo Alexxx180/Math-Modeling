@@ -1,10 +1,10 @@
 using System.IO;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
-using WisdomLight.ViewModel.Components.Data.Fields;
-using WisdomLight.ViewModel;
+using MathWindow.ViewModel.Components.Data.Fields;
+using MathWindow.ViewModel;
 
-namespace WisdomLight.ViewModel.Components.Data.Adapter
+namespace MathWindow.ViewModel.Components.Data.Adapter
 {
 	public class ScriptViewModel
 	{

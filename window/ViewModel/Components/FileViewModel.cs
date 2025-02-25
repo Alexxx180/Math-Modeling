@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.ObjectModel;
-using WisdomLight.ViewModel.Components.Data;
-using WisdomLight.ViewModel.Components.Data.Fields;
+using MathWindow.ViewModel.Components.Data;
+using MathWindow.ViewModel.Components.Data.Fields;
 
-namespace WisdomLight.ViewModel.Components
+namespace MathWindow.ViewModel.Components
 {
 	public class FileViewModel : NotifyPropertyChanged
 	{

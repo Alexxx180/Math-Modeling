@@ -2,7 +2,7 @@
 using System.Windows.Input;
 using System.Collections.ObjectModel;
 
-namespace WisdomLight.ViewModel.Components
+namespace MathWindow.ViewModel.Components
 {
 	public class MainViewModel : NotifyPropertyChanged
 	{

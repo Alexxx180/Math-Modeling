@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using static System.Console;
 
-namespace WisdomLight.ViewModel.Components.Data.Adapter
+namespace MathWindow.ViewModel.Components.Data.Adapter
 {
 	public class ScriptParser
 	{

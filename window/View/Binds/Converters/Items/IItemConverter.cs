@@ -1,4 +1,4 @@
-﻿namespace WisdomLight.View.Binds.Converters.Items
+﻿namespace MathWindow.View.Binds.Converters.Items
 {
     /// <summary>
     /// Converts Master to the Target, and back again.

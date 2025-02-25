@@ -1,8 +1,8 @@
 ﻿using System.Windows;
-using WisdomLight.View;
-using WisdomLight.ViewModel.Components;
+using MathWindow.View;
+using MathWindow.ViewModel.Components;
 
-namespace WisdomLight
+namespace MathWindow
 {
 	/// <summary>
 	/// Interaction logic for App.xaml
@@ -11,9 +11,13 @@ namespace WisdomLight
 	{
 		private void OnStartup(object sender, StartupEventArgs e)
 		{
+			System.Console.WriteLine("INIT");
+			// /*
 			IWindowService windows = new WindowService();
 			MainViewModel viewModel = new MainViewModel();
+			System.Console.WriteLine("VIEW MODEL INIT");
 			windows.ShowWindow(viewModel);
+			// */ return;
 		}
 	}
 }

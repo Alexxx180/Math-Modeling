@@ -1,4 +1,4 @@
-﻿namespace WisdomLight.View
+﻿namespace MathWindow.View
 {
     public interface IWindowService
     {

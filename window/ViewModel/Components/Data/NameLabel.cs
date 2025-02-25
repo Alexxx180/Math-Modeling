@@ -1,4 +1,4 @@
-﻿namespace WisdomLight.ViewModel.Components.Data
+﻿namespace MathWindow.ViewModel.Components.Data
 {
     public class NameLabel : NotifyPropertyChanged
     {

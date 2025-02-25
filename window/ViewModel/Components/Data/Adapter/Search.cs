@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Reflection;
 
-namespace WisdomLight.ViewModel.Components.Data.Adapter
+namespace MathWindow.ViewModel.Components.Data.Adapter
 {
 	public static class Search
 	{

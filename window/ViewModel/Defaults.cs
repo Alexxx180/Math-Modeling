@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace WisdomLight.ViewModel
+namespace MathWindow.ViewModel
 {
 	public static class Defaults
 	{

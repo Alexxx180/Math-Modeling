@@ -1,6 +1,6 @@
 using System.Collections.ObjectModel;
 
-namespace WisdomLight.ViewModel.Components.Data.Fields
+namespace MathWindow.ViewModel.Components.Data.Fields
 {
     public class ListExpression : NameLabel
     {

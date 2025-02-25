@@ -1,9 +1,9 @@
 ﻿using System.IO;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using WisdomLight.ViewModel.Components.Data.Fields;
+using MathWindow.ViewModel.Components.Data.Fields;
 
-namespace WisdomLight.ViewModel.Components.Data
+namespace MathWindow.ViewModel.Components.Data
 {
 	public class TemplateViewModel : NameLabel
 	{

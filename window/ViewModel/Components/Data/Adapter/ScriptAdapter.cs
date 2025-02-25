@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WisdomLight.ViewModel.Components.Data.Adapter
+namespace MathWindow.ViewModel.Components.Data.Adapter
 {
 	public class ScriptAdapter
 	{

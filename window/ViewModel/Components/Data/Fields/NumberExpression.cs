@@ -1,4 +1,4 @@
-﻿namespace WisdomLight.ViewModel.Components.Data.Fields
+﻿namespace MathWindow.ViewModel.Components.Data.Fields
 {
 	public class NumberExpression : NameLabel
 	{

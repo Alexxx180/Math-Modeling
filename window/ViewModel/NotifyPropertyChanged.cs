@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace WisdomLight.ViewModel
+namespace MathWindow.ViewModel
 {
 	public class NotifyPropertyChanged : INotifyPropertyChanged
 	{

@@ -1,11 +1,11 @@
-﻿<Application x:Class="WisdomLight.App"
+﻿<Application x:Class="MathWindow.App"
 			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-			 xmlns:vm="clr-namespace:WisdomLight.ViewModel.Components"
+			 xmlns:vm="clr-namespace:MathWindow.ViewModel.Components"
 			 Startup="OnStartup">
 	<Application.Resources>
 		<ResourceDictionary>
-			<ResourceDictionary.MergedDictionaries>
+			<!--<ResourceDictionary.MergedDictionaries>
 				<ResourceDictionary Source="Resources/Styles/Total.xaml"/>
 				<ResourceDictionary Source="Resources/Styles/Text.xaml"/>
 				<ResourceDictionary Source="Resources/Styles/Editing/Buttons.xaml"/>
@@ -24,26 +24,8 @@
 				
 				<ResourceDictionary Source="Resources/Templates/Controls/Windows/Main.xaml"/>
 				<ResourceDictionary Source="Resources/Templates/Controls/Windows/Editor.xaml"/>
-			</ResourceDictionary.MergedDictionaries>
+			</ResourceDictionary.MergedDictionaries>-->
 
-			<DataTemplate DataType="{x:Type vm:MainViewModel}">
-				<ContentControl Template="{StaticResource MainView}" FocusManager.FocusedElement="{Binding RelativeSource={RelativeSource Self}}">
-					<ContentControl.InputBindings>
-						<KeyBinding Modifiers="Ctrl" Key="One" Command="{Binding FirstTabCommand}" />
-						<KeyBinding Modifiers="Ctrl" Key="Two" Command="{Binding SecondTabCommand}" />
-						<KeyBinding Modifiers="Ctrl" Key="Tab" Command="{Binding SwitchTabsCommand}" />
-					</ContentControl.InputBindings>
-				</ContentControl>
-			</DataTemplate>
-			
-			<DataTemplate DataType="{x:Type vm:FileViewModel}">
-				<ContentControl Template="{StaticResource EditorView}" FocusManager.FocusedElement="{Binding RelativeSource={RelativeSource Self}}">
-					<ContentControl.InputBindings>
-						<KeyBinding Modifiers="Ctrl" Key="Enter" Command="{Binding SubmitCommand}" />
-						<KeyBinding Modifiers="Alt" Key="Enter" Command="{Binding SyncCommand}" />
-					</ContentControl.InputBindings>
-				</ContentControl>
-			</DataTemplate>
 		</ResourceDictionary>
 	</Application.Resources>
 </Application>

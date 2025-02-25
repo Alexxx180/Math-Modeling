@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace WisdomLight
+namespace MathWindow
 {
 	/// <summary>
 	/// Containing data templates
