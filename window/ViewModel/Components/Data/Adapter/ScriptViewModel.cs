@@ -1,5 +1,6 @@
 using System.IO;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using WisdomLight.ViewModel.Components.Data.Fields;
 using WisdomLight.ViewModel;
 
@@ -15,20 +16,16 @@ namespace WisdomLight.ViewModel.Components.Data.Adapter
 
 		private ObservableCollection<FileViewModel> _model;
 
-		private bool NoPath(string path)
-		{
-			return string.IsNullOrEmpty(path) || !File.Exists(path);
-		}
-
 		private void AddResult(string field, string[] output)
 		{
 			_result.Name = field;
 			foreach(string text in output)
+			{
 				List<string> result = new List<string>();
 				string[] cells = text.Split(_list);
-				foreach(string cell in cells)
-					result.Add(cell);
+				foreach(string cell in cells) result.Add(cell);
 				_result.No.Add(result);
+			}
 		}
 
 		private void AddData(string field, string[] output)
@@ -48,7 +45,6 @@ namespace WisdomLight.ViewModel.Components.Data.Adapter
 			if (output == string.Empty)
 				return FileViewModel.Default;
 
-			string limiter = " + ", comma = ", ";
 			_calculus = new ObservableCollection<NumberExpression>();
 			_data = new ListExpression()
 			{
@@ -67,9 +63,9 @@ namespace WisdomLight.ViewModel.Components.Data.Adapter
 				{
 					AddResult(fields[length], field.Split(_lists));
 				}
-				else if (field.Contains(comma))
+				else if (field.Contains(_list))
 				{
-					AddData(fields[length], field.Split(comma));
+					AddData(fields[length], field.Split(_list));
 				}
 				else
 				{
@@ -87,17 +83,17 @@ namespace WisdomLight.ViewModel.Components.Data.Adapter
 			};
 		}
 
-		public MainViewModel GetMainViewModel(ScriptParser parser, string[] kinds)
+		public MainViewModel GetMainViewModel(ScriptParser parser)
 		{
 			_model = new ObservableCollection<FileViewModel>();
 
-			foreach(string kind in kinds)
+			foreach(string kind in parser.Kinds)
 				if (parser.HasError(kind))
 					_model.Add(FileViewModel.Default);
 				else
 					_model.Add(GetModel(parser.Output(kind), kind));
 
-			return new MainViewModel { Model = model };
+			return new MainViewModel { Data = _model };
 		}
 	}
 }

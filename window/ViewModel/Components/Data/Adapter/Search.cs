@@ -1,4 +1,5 @@
-using System.IO;
+using System.Linq;
+using System.Reflection;
 
 namespace WisdomLight.ViewModel.Components.Data.Adapter
 {
@@ -6,26 +7,27 @@ namespace WisdomLight.ViewModel.Components.Data.Adapter
 	{
 		public static int Variant()
 		{
-			string variantPath = Search.File("project", "variant.txt");
-			Console.WriteLine("Path to variant: ", variantPath);
-			return (int)File.ReadAllText(variantPath);
+			string variantPath = File("project", "variant.txt");
+			System.Console.WriteLine("Path to variant: ", variantPath);
+			return System.Convert.ToInt32(System.IO.File.ReadAllText(variantPath));
 		}
 
 		public static string Python(string folder)
 		{
-			return File(folder, Path.Combine("myenv", "Scripts", "python.exe"));
+			string path = System.IO.Path.Combine("myenv", "Scripts", "python.exe");
+			return File(folder, path);
 		}
 
 		public static string File(string directory, string name)
 		{
 			Assembly exe = Assembly.GetExecutingAssembly();
 
-			string current = Path.GetDirectoryName(exe.Location);
+			string current = System.IO.Path.GetDirectoryName(exe.Location);
 			string path = Folder(current, directory, name);
 
 			while ((current != string.Empty) && (path == string.Empty))
 			{
-				current = Directory.GetParent(current)?.FullName;
+				current = System.IO.Directory.GetParent(current)?.FullName;
 				path = Folder(current, directory, name);
 			}
 
@@ -34,16 +36,16 @@ namespace WisdomLight.ViewModel.Components.Data.Adapter
 
 		public static string Folder(string basis, string target, string name)
 		{
-			string path = Path.Combine(basis, target);
-			if (!Directory.Exists(path))
+			string path = System.IO.Path.Combine(basis, target);
+			if (!System.IO.Directory.Exists(path))
 				return string.Empty;
 
-			string result = Path.Combine(path, name);
-			if (File.Exists(result))
+			string result = System.IO.Path.Combine(path, name);
+			if (System.IO.File.Exists(result))
 				return result;
 
 			result = string.Empty;
-			string[] folders = Directory.GetDirectories(path);
+			string[] folders = System.IO.Directory.GetDirectories(path).ToArray();
 			int i = folders.Length;
 
 			while ((--i >= 0) && (result == string.Empty))

@@ -14,6 +14,10 @@ namespace WisdomLight.ViewModel.Components.Data.Adapter
 		private bool _noScripts = false;
 		public bool NoScripts => _noScripts;
 
+		private string[] _kinds;
+		public string[] Kinds => _kinds;
+		private int _no = -1, _variant;
+
 		private string _script = "main.py", _app = "project", _interpreter;
 		private Dictionary<string, string> _result, _error, _exit;
 
@@ -21,19 +25,22 @@ namespace WisdomLight.ViewModel.Components.Data.Adapter
 
 		public string Output(string kind) => _result[kind];
 
-		public ScriptParser() {
+		public ScriptParser(int variant) {
+			_kinds = new string[] { "table", "model" };
+			_variant = variant;
 			_result = new Dictionary<string, string>();
 			_error = new Dictionary<string, string>();
+			_exit = new Dictionary<string, string>();
 
 			_script = NoPath(Search.File(_app, _script), nameof(_script));
 			_interpreter = NoPath(Search.Python(_app), nameof(_interpreter));
 		}
 
-		private bool NoPath(string path, string name)
+		private string NoPath(string path, string name)
 		{
 			_noScripts |= string.IsNullOrEmpty(path) || !File.Exists(path);
 			if (_noScripts) Error.WriteLine($"No Python {name} found: {path}");
-			return result;
+			return path;
 		}
 
 		private void Results(TimeSpan elapsed, string kind)
@@ -48,10 +55,11 @@ namespace WisdomLight.ViewModel.Components.Data.Adapter
 
 		private ProcessStartInfo GetInfo(int variant, string kind)
 		{
+			string limiter = " ";
 			return new ProcessStartInfo()
 			{
 				FileName = _interpreter,
-				Arguments = " ".Join(_script, kind, variant),
+				Arguments = string.Join(limiter, _script, kind, variant),
 				WorkingDirectory = Path.GetDirectoryName(_script),
 				UseShellExecute = false,
 				RedirectStandardOutput = true,
@@ -60,34 +68,49 @@ namespace WisdomLight.ViewModel.Components.Data.Adapter
 			};
 		}
 
-		public async Task Parse(int variant, string kind)
+		public async Task Parse()
 		{
-			try
-			{
+			await Task.Run(() => {
+				string kind = _kinds[++_no];
 				Stopwatch time = new Stopwatch();
-				time.Start();
-
-				ProcessStartInfo info = GetInfo(variant, kind);
-				using (Process process = Process.Start(info))
+				try
 				{
-					using (StreamReader reader = process.StandardOutput)
+					time.Start();
+
+					ProcessStartInfo info = GetInfo(_variant, kind);
+					using (Process process = Process.Start(info))
 					{
-						_result[kind] = reader.ReadToEnd();
+						using (StreamReader reader = process.StandardOutput)
+						{
+							_result[kind] = reader.ReadToEnd();
+						}
+						using (StreamReader errorReader = process.StandardError)
+						{
+							_error[kind] = errorReader.ReadToEnd();
+						}
+						process.WaitForExit();
+						_exit[kind] = $"Process exit with code: {process.ExitCode}";
 					}
-					using (StreamReader errorReader = process.StandardError)
-					{
-						_error[kind] = errorReader.ReadToEnd();
-					}
-					process.WaitForExit();
-					_exit[kind] = $"Process exit with code: {process.ExitCode}";
 				}
-				time.Stop();
-			}
-			catch (Exception ex)
-			{
-				Error.Write($"Message: '{ex.Message}', Callstack: {ex.StackTrace}");
-			}
-			Results(time.Elapsed, kind);
+				catch (Exception ex)
+				{
+					Error.Write($"Message: '{ex.Message}', Callstack: {ex.StackTrace}");
+				}
+				finally
+				{
+					time.Stop();
+				}
+				Results(time.Elapsed, kind);
+			});
+		}
+
+		public void ParseAll()
+		{
+			Task[] tasks = {
+				Task.Factory.StartNew(Parse),
+				Task.Factory.StartNew(Parse)
+			};
+			Task.WaitAll(tasks);
 		}
 	}
 }
