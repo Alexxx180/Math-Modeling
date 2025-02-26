@@ -93,7 +93,7 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 				else
 					_model.Add(GetModel(parser.Output(kind), kind));
 
-			return new MainViewModel { Data = _model };
+			return new MainViewModel { Table = _model[0], Model = _model[1] };
 		}
 	}
 }

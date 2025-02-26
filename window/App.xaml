@@ -26,6 +26,55 @@
 				<ResourceDictionary Source="Resources/Templates/Controls/Windows/Editor.xaml"/>
 			</ResourceDictionary.MergedDictionaries>-->
 
+			<DataTemplate x:Key="ExpressNumber">
+				<Border>
+					<StackPanel Orientation="Horizontal">
+						<StackPanel.Resources>
+							<Style TargetType="{x:Type TextBlock}">
+								<Setter Property="Margin" Value="10,5,10,5"/>
+							</Style>
+						</StackPanel.Resources> 
+
+						<TextBlock Text="{Binding Path=Name}"/>
+						<TextBlock Text="{Binding Path=No}"/>
+					</StackPanel>
+				</Border>
+			</DataTemplate>
+
+			<ControlTemplate x:Key="ExpressFile">
+				<ListBox ItemTemplate="{StaticResource ExpressNumber}" ItemsSource="{Binding Path=Data.Calculus}">
+					<ListBox.ItemsPanel>
+						<ItemsPanelTemplate>
+							<WrapPanel Width="300"/>
+						</ItemsPanelTemplate>
+					</ListBox.ItemsPanel>
+				</ListBox>
+			</ControlTemplate>
+
+			<DataTemplate DataType="{x:Type vm:MainViewModel}">
+				<ContentControl>
+					<TabControl>
+						<TabItem>
+							<TabItem.Header>
+								<TextBlock Text="Дискретная модель"/>
+							</TabItem.Header>
+							<TabItem.Content>
+								Sample text
+							</TabItem.Content>
+						</TabItem>
+						<TabItem>
+							<TabItem.Header>
+								<TextBlock Text="Непрерывная модель"/>
+							</TabItem.Header>
+							<TabItem.Content>
+								<ContentControl Template="{StaticResource ExpressFile}" DataContext="{Binding Path=Model}"/>
+								<!-- <ContentControl DataContext="{Binding Path=Model}">Sample text</ContentControl> -->
+							</TabItem.Content>
+						</TabItem>
+					</TabControl>
+				</ContentControl>
+			</DataTemplate>
+
 		</ResourceDictionary>
 	</Application.Resources>
 </Application>

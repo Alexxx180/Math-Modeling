@@ -8,6 +8,6 @@
         x:Name="Editing"
         Icon="/Resources/Images/Icons/favicon.ico"
         Width="640" Height="480"
-        MinWidth="320" MinHeight="200">
+        MinWidth="320" MinHeight="200" Title="Математическое моделирование">
 		<!-- Title="{Binding ElementName=Editing, Path=Content.Data.Name}" -->
 </Window>

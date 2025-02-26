@@ -17,7 +17,10 @@ namespace MathWindow.ViewModel.Components
 		{
 			Data = new TemplateViewModel
 			{
-				Calculus = new ObservableCollection<NumberExpression>(),
+				Calculus = new ObservableCollection<NumberExpression>
+				{
+					NumberExpression.Default
+				},
 				Data = ListExpression.Default,
 				Result = GridExpression.Default,
 			}

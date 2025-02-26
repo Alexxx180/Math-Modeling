@@ -6,8 +6,12 @@ namespace MathWindow.ViewModel.Components
 {
 	public class MainViewModel : NotifyPropertyChanged
 	{
-		public MainViewModel() {}
+		public MainViewModel() {
+			Table = FileViewModel.Default;
+			Model = FileViewModel.Default;
+		}
 
-		public ObservableCollection<FileViewModel> Data { get; set; }
+		public FileViewModel Table { get; set; }
+		public FileViewModel Model { get; set; }
 	}
 }

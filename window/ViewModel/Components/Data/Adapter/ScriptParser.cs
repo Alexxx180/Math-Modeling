@@ -106,11 +106,14 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 
 		public void ParseAll()
 		{
-			Task[] tasks = {
-				Task.Factory.StartNew(Parse),
-				Task.Factory.StartNew(Parse)
+			return;
+			/*
+			Task[] tasks = { Parse(), Parse()
+				// Task.Factory.StartNew(Parse),
+				//Task.Factory.StartNew(Parse)
 			};
-			Task.WaitAll(tasks);
+			Task.WaitAll(tasks);*/
 		}
+
 	}
 }
