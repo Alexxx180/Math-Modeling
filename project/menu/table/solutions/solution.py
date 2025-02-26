@@ -7,13 +7,21 @@ class RandomDistribution:
 		self.init = RandomSelection(args["N"], args["q"])
 		self.method = self.reverse_method
 
-	def to_list() -> list:
-		result: list = math.to_list()
-		result.extend([self.init.numbers, self.init.quantity])
-		result.append(str(self.math.x))
+	def _list_to_str(self, value: list, skip_format: bool = False) -> str:
+		if skip_format:
+			return str(value).replace("[", "").replace("]", "")
+		return str(["{0:.3f}".format(v) for v in value]).replace("[", "").replace("]", "")
+
+	def to_list(self) -> list:
+		result: list = self.math.to_list()
+		result.extend([str(self.init.numbers), str(self.init.quantity)])
+		result.append(self._list_to_str(self.math.x, True))
 		if len(self.math.p) > 0:
-			result.append(str(self.math.p))
-		result.append(str(self.init.r))
+			result.append(self._list_to_str(self.math.p, True))
+		r: list = []
+		for row in self.init.r:
+			r.append(self._list_to_str(row, True))
+		result.append(" + ".join(r))
 		return result
 
 	def set_method(self, model) -> None:

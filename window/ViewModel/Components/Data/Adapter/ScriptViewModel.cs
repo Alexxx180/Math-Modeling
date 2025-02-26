@@ -14,7 +14,7 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 		private ListExpression _data;
 		private GridExpression _result;
 
-		private ObservableCollection<FileViewModel> _model;
+		private List<FileViewModel> _model;
 
 		private void AddResult(string field, string[] output)
 		{
@@ -85,7 +85,7 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 
 		public MainViewModel GetMainViewModel(ScriptParser parser)
 		{
-			_model = new ObservableCollection<FileViewModel>();
+			_model = new List<FileViewModel>();
 
 			foreach(string kind in parser.Kinds)
 				if (parser.HasError(kind))

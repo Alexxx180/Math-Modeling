@@ -23,6 +23,12 @@
 		<RepositoryUrl>https://github.com/Alexxx180/Math-Modeling</RepositoryUrl>
 	</PropertyGroup>
 
+
+	<!--<ItemGroup>
+		<PackageReference Include="Serilog" Version="4.2.0" />
+		<PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+	</ItemGroup>-->
+
 	<ItemGroup>
 		<None Remove="Resources\Images\Icons\favicon.ico" />
 		<None Remove="Resources\Images\Icons\Wisdom3.ico" />

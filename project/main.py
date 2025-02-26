@@ -1,15 +1,19 @@
-import matplotlib
+import sys
 from common.handlers.interaction import pause
 from common.handlers.input.specific import setup_input
 from common.commander.resources import Resources
 from start import dropdown, setup_menu
+from menu.table.entry import RandomTableEntryCMD
+from menu.model.entry import RandomModelEntryCMD
 
 variant: int
+cmd: bool = len(sys.argv) > 1
 
 def variant_check(path: str, count: int):
 	start: int = 1
 	no: int = (variant - start) % count + start
-	print(Resources.Texts["Common"]["Variant"].format(path, count, no))
+	if not cmd:
+		print(Resources.Texts["Common"]["Variant"].format(path, count, no))
 	return Resources.at(f'resources/{path}/{no}.json')
 
 def extract_resources(file, feedback) -> dict:
@@ -34,14 +38,27 @@ def main() -> None:
 		setattr(Resources, name, resource(manifest[name]))
 
 if __name__ == '__main__':
-	matplotlib.use('TkAgg')
+	p: str = sys.argv[0]
+	if ':' in p:
+		separator: str = '\\'
+		Resources.set_initial(p[:p.rfind(separator)] + separator)
 
-	with open('variant.txt') as no:
-		variant = int(no.readline())
+	if len(sys.argv) == 3:
+		variant = int(sys.argv[2])
+	else:
+		p = Resources.InitialDir + 'variant.txt'
+		with open(p) as no:
+			variant = int(no.readline())
 
-	print("Program No {0}, Variants check...\n".format(variant))
 	main()
-	setup_input(Resources.at('resources/texts/queries.json'))
-	setup_menu()
-	pause()
-	dropdown()
+	if len(sys.argv) > 1:
+		if sys.argv[1] == "model":
+			print(RandomModelEntryCMD())
+		else:
+			print(RandomTableEntryCMD())
+	else:
+		print("Program No {0}, Variants check...\n".format(variant))
+		setup_input(Resources.at('resources/texts/queries.json'))
+		setup_menu()
+		pause()
+		dropdown()

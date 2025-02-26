@@ -20,7 +20,7 @@ def RandomModelReverseMethod(name: str, args: list) -> None:
 
 	text.pause()
 
-def get_result(args: list) -> str:
+def RandomModelReverseMethodCMD(args: list) -> str:
 	adapt: dict = RandomModel.get_adapter(args)
 	model = RandomModel(adapt["ab"])
 	table = RandomDistribution(adapt).set_method(model)

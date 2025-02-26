@@ -1,5 +1,7 @@
 from typing import Callable
 
+f: str = "{0:.3f}"
+
 class RandomCalculus:
 	def __init__(self, x: list, p: list) -> None:
 		self.expecting = None     # expectation lambda
@@ -12,7 +14,8 @@ class RandomCalculus:
 		self.p: list = p          # [0.1, 0.5, 0.4] # probability
 
 	def to_list(self) -> list:
-		return [self.expect, self.dispersia, self.eval, self.ground]
+		return [f.format(self.expect), f.format(self.dispersia),
+			f.format(self.eval), f.format(self.ground)]
 
 	def set_expecting(self, method) -> None:
 		self.expecting = method

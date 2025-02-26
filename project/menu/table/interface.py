@@ -15,5 +15,5 @@ def RandomTableReverseMethod(name: str, args: dict) -> None:
 
 	text.pause()
 
-def get_result(args: dict) -> str:
+def RandomTableReverseMethodCMD(args: dict) -> str:
 	return " - ".join(RandomDistribution(args).start().to_list())

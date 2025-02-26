@@ -18,7 +18,7 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 		{
 			_variant = 8;
 			_model = new MainViewModel();
-			// _parser = new ScriptParser(_variant);
+			_parser = new ScriptParser(_variant);
 			_viewModelFactory = new ScriptViewModel();
 			//_variant = Search.Variant();
 		}
@@ -30,8 +30,10 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 
 		public async Task Connect()
 		{
-			await Some();
-			await Some();
+			await _parser.ParseAll();
+			// await Some();
+			// await Some();
+
 			//return _viewModelFactory.GetMainViewModel(_parser);
 		}
 	}

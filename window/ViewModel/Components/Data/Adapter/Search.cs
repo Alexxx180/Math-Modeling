@@ -14,8 +14,9 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 
 		public static string Python(string folder)
 		{
-			string path = System.IO.Path.Combine("myenv", "Scripts", "python.exe");
-			return File(folder, path);
+			//string path = System.IO.Path.Combine("myenv", "Scripts", "python.exe");
+			return "C:/Python312/python.exe";
+				//File(folder, path);
 		}
 
 		public static string File(string directory, string name)

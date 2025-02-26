@@ -1,6 +1,5 @@
 using System;
 using System.Diagnostics;
-using System.IO;
 using System.Reflection;
 using System.Globalization;
 using System.Threading.Tasks;
@@ -31,26 +30,33 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 			_result = new Dictionary<string, string>();
 			_error = new Dictionary<string, string>();
 			_exit = new Dictionary<string, string>();
-
+			/*
+			_script = Search.File(_app, _script);
+			_interpreter = Search.Python(_app);
+			*/
 			_script = NoPath(Search.File(_app, _script), nameof(_script));
 			_interpreter = NoPath(Search.Python(_app), nameof(_interpreter));
 		}
 
 		private string NoPath(string path, string name)
 		{
-			_noScripts |= string.IsNullOrEmpty(path) || !File.Exists(path);
-			if (_noScripts) Error.WriteLine($"No Python {name} found: {path}");
+			_noScripts |= string.IsNullOrEmpty(path) || !System.IO.File.Exists(path);
+			if (_noScripts)
+			{
+				// Error.WriteLine($"No Python {name} found: {path}");
+			}
 			return path;
 		}
 
 		private void Results(TimeSpan elapsed, string kind)
 		{
-			WriteLine($"Time last: {elapsed.TotalMilliseconds} ms");
-			WriteLine(_exit[kind]);
-
 			string output = HasError(kind) ?
 				$"Error: {_error[kind]}" : $"Result: {_result[kind]}";
+			/*
+			WriteLine($"Time last: {elapsed.TotalMilliseconds} ms");
+			WriteLine(_exit[kind]);
 			WriteLine(output);
+			// */
 		}
 
 		private ProcessStartInfo GetInfo(int variant, string kind)
@@ -60,7 +66,7 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 			{
 				FileName = _interpreter,
 				Arguments = string.Join(limiter, _script, kind, variant),
-				WorkingDirectory = Path.GetDirectoryName(_script),
+				WorkingDirectory = System.IO.Path.GetDirectoryName(_script),
 				UseShellExecute = false,
 				RedirectStandardOutput = true,
 				RedirectStandardError = true,
@@ -68,51 +74,59 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 			};
 		}
 
-		public async Task Parse()
+		public void Parse()
 		{
-			await Task.Run(() => {
-				string kind = _kinds[++_no];
-				Stopwatch time = new Stopwatch();
-				try
-				{
-					time.Start();
+			string kind = _kinds[++_no];
+			Stopwatch time = new Stopwatch();
+			try
+			{
+				time.Start();
 
-					ProcessStartInfo info = GetInfo(_variant, kind);
-					using (Process process = Process.Start(info))
+				ProcessStartInfo info = GetInfo(_variant, kind);
+				using (Process process = Process.Start(info))
+				{
+					using (System.IO.StreamReader reader = process.StandardOutput)
 					{
-						using (StreamReader reader = process.StandardOutput)
-						{
-							_result[kind] = reader.ReadToEnd();
-						}
-						using (StreamReader errorReader = process.StandardError)
-						{
-							_error[kind] = errorReader.ReadToEnd();
-						}
-						process.WaitForExit();
-						_exit[kind] = $"Process exit with code: {process.ExitCode}";
+						_result[kind] = reader.ReadToEnd();
 					}
+					using (System.IO.StreamReader errorReader = process.StandardError)
+					{
+						_error[kind] = errorReader.ReadToEnd();
+					}
+					process.WaitForExit();
+					_exit[kind] = $"Process exit with code: {process.ExitCode}";
+					System.IO.File.WriteAllText($"{kind}-ok.txt", _exit[kind]);
 				}
-				catch (Exception ex)
-				{
-					Error.Write($"Message: '{ex.Message}', Callstack: {ex.StackTrace}");
-				}
-				finally
-				{
-					time.Stop();
-				}
-				Results(time.Elapsed, kind);
-			});
+			}
+			catch (Exception ex)
+			{
+				System.IO.File.WriteAllText($"{kind}-error.txt", $"Message: '{ex.Message}', Callstack: {ex.StackTrace}");
+				// Error.Write($"Message: '{ex.Message}', Callstack: {ex.StackTrace}");
+			}
+			finally
+			{
+				time.Stop();
+			}
+			Results(time.Elapsed, kind);
 		}
 
-		public void ParseAll()
+		public async Task ParseAll()
 		{
-			return;
-			/*
-			Task[] tasks = { Parse(), Parse()
-				// Task.Factory.StartNew(Parse),
+			// List<Task> tasks = new List<Task>();
+			/* for (byte i = 0; i < 2; i++)
+			{
+				var LastTask = new Task(SomeFunction);
+				LastTask.Start();
+				TaskList.Add(LastTask);
+			}
+			var task1 = Parse();*/
+
+			// /*
+			Task[] tasks = { new Task(Parse), new Task(Parse) };
+			/*	// Task.Factory.StartNew(Parse),
 				//Task.Factory.StartNew(Parse)
-			};
-			Task.WaitAll(tasks);*/
+			}; */
+			await Task.WhenAll(tasks); // */
 		}
 
 	}
