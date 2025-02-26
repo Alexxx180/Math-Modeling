@@ -45,7 +45,7 @@
 				<ListBox ItemTemplate="{StaticResource ExpressNumber}" ItemsSource="{Binding Path=Data.Calculus}">
 					<ListBox.ItemsPanel>
 						<ItemsPanelTemplate>
-							<WrapPanel Width="300"/>
+							<WrapPanel/> <!-- Width="300"-->
 						</ItemsPanelTemplate>
 					</ListBox.ItemsPanel>
 				</ListBox>

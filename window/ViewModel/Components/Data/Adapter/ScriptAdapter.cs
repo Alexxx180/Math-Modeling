@@ -12,26 +12,31 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 
 		private MainViewModel _model;
 		public MainViewModel Model => _model;
-		private int _variant;
 
 		public ScriptAdapter()
 		{
-			_variant = 8;
 			_model = new MainViewModel();
-			_parser = new ScriptParser(_variant);
+			_parser = new ScriptParser();
 			_viewModelFactory = new ScriptViewModel();
-			//_variant = Search.Variant();
 		}
 
 		public async Task Some()
 		{
-			await Task.Run(() => { _model.Model.Data.Calculus.Add(NumberExpression.Default); });
+			await Task.Run(() => {
+				_parser.Parse();
+				string info = _parser.Output("table");
+				_model.Model.Data.Calculus.Add(new NumberExpression("Output", info));
+				/*
+				var info = _parser.GetInfo("table");
+				_model.Model.Data.Calculus.Add(new NumberExpression(info.FileName, info.Arguments));
+				*/
+			});
 		}
 
 		public async Task Connect()
 		{
-			await _parser.ParseAll();
-			// await Some();
+			// await _parser.ParseAll();
+			await Some();
 			// await Some();
 
 			//return _viewModelFactory.GetMainViewModel(_parser);

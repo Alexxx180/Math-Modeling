@@ -4,8 +4,8 @@
 		<OutputType>WinExe</OutputType>
 		<TargetFramework>net8.0-windows</TargetFramework>
 		<RootNamespace>MathWindow</RootNamespace>
-	<UseWPF>true</UseWPF>
-	<UseShellExecute>true</UseShellExecute>
+		<UseWPF>true</UseWPF>
+		<!-- <UseShellExecute>true</UseShellExecute>-->
 		<UseWindowsForms>true</UseWindowsForms>
 		<ApplicationIcon>Resources/Images/Icons/favicon.ico</ApplicationIcon>
 		<Company>EX - Digits</Company>

@@ -5,13 +5,6 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 {
 	public static class Search
 	{
-		public static int Variant()
-		{
-			string variantPath = File("project", "variant.txt");
-			System.Console.WriteLine("Path to variant: ", variantPath);
-			return System.Convert.ToInt32(System.IO.File.ReadAllText(variantPath));
-		}
-
 		public static string Python(string folder)
 		{
 			//string path = System.IO.Path.Combine("myenv", "Scripts", "python.exe");

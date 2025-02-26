@@ -15,7 +15,7 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 
 		private string[] _kinds;
 		public string[] Kinds => _kinds;
-		private int _no = -1, _variant;
+		private int _no = 0;
 
 		private string _script = "main.py", _app = "project", _interpreter;
 		private Dictionary<string, string> _result, _error, _exit;
@@ -24,9 +24,8 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 
 		public string Output(string kind) => _result[kind];
 
-		public ScriptParser(int variant) {
+		public ScriptParser() {
 			_kinds = new string[] { "table", "model" };
-			_variant = variant;
 			_result = new Dictionary<string, string>();
 			_error = new Dictionary<string, string>();
 			_exit = new Dictionary<string, string>();
@@ -50,8 +49,8 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 
 		private void Results(TimeSpan elapsed, string kind)
 		{
-			string output = HasError(kind) ?
-				$"Error: {_error[kind]}" : $"Result: {_result[kind]}";
+			// string output = HasError(kind) ?
+				// $"Error: {_error[kind]}" : $"Result: {_result[kind]}";
 			/*
 			WriteLine($"Time last: {elapsed.TotalMilliseconds} ms");
 			WriteLine(_exit[kind]);
@@ -59,13 +58,13 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 			// */
 		}
 
-		private ProcessStartInfo GetInfo(int variant, string kind)
+		internal ProcessStartInfo GetInfo(string kind)
 		{
 			string limiter = " ";
 			return new ProcessStartInfo()
 			{
 				FileName = _interpreter,
-				Arguments = string.Join(limiter, _script, kind, variant),
+				Arguments = string.Join(limiter, _script, kind),
 				WorkingDirectory = System.IO.Path.GetDirectoryName(_script),
 				UseShellExecute = false,
 				RedirectStandardOutput = true,
@@ -76,13 +75,13 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 
 		public void Parse()
 		{
-			string kind = _kinds[++_no];
+			string kind = _kinds[_no++];
 			Stopwatch time = new Stopwatch();
 			try
 			{
 				time.Start();
 
-				ProcessStartInfo info = GetInfo(_variant, kind);
+				ProcessStartInfo info = GetInfo(kind);
 				using (Process process = Process.Start(info))
 				{
 					using (System.IO.StreamReader reader = process.StandardOutput)
@@ -95,12 +94,12 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 					}
 					process.WaitForExit();
 					_exit[kind] = $"Process exit with code: {process.ExitCode}";
-					System.IO.File.WriteAllText($"{kind}-ok.txt", _exit[kind]);
+					System.IO.File.WriteAllText($"C:/{kind}-ok.txt", _exit[kind]);
 				}
 			}
 			catch (Exception ex)
 			{
-				System.IO.File.WriteAllText($"{kind}-error.txt", $"Message: '{ex.Message}', Callstack: {ex.StackTrace}");
+				System.IO.File.WriteAllText($"C:/{kind}-error.txt", $"Message: '{ex.Message}', Callstack: {ex.StackTrace}");
 				// Error.Write($"Message: '{ex.Message}', Callstack: {ex.StackTrace}");
 			}
 			finally
