@@ -17,21 +17,18 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 		public string[] Kinds => _kinds;
 
 		private string _script = "main.py", _app = "project", _interpreter;
-		private Dictionary<string, string> _result, _error, _exit;
+		private Dictionary<string, string> _result;
 
-		public bool HasError(string kind) => _error.ContainsKey(kind);
-
-		public string Output(string kind) => _result[kind];
+		public string Output(string kind)
+		{
+			string output;
+			if (_result.TryGetValue(kind, out output)) return output;
+			return string.Empty;
+		}
 
 		public ScriptParser() {
 			_kinds = new string[] { "table", "model" };
 			_result = new Dictionary<string, string>();
-			_error = new Dictionary<string, string>();
-			_exit = new Dictionary<string, string>();
-			/*
-			_script = Search.File(_app, _script);
-			_interpreter = Search.Python(_app);
-			*/
 			_script = NoPath(Search.File(_app, _script), nameof(_script));
 			_interpreter = NoPath(Search.Python(_app), nameof(_interpreter));
 		}
@@ -39,22 +36,8 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 		private string NoPath(string path, string name)
 		{
 			_noScripts |= string.IsNullOrEmpty(path) || !System.IO.File.Exists(path);
-			if (_noScripts)
-			{
-				// Error.WriteLine($"No Python {name} found: {path}");
-			}
+			if (_noScripts) { Log($"no-{name}", $"No path found: {path}"); }
 			return path;
-		}
-
-		private void Results(TimeSpan elapsed, string kind)
-		{
-			// string output = HasError(kind) ?
-				// $"Error: {_error[kind]}" : $"Result: {_result[kind]}";
-			/*
-			WriteLine($"Time last: {elapsed.TotalMilliseconds} ms");
-			WriteLine(_exit[kind]);
-			WriteLine(output);
-			// */
 		}
 
 		internal ProcessStartInfo GetInfo(string kind)
@@ -72,8 +55,21 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 			};
 		}
 
-		public void Parse(string kind)
+		private void Log(string status, string message)
 		{
+			System.IO.File.WriteAllText($"C:/{status}.txt", message);
+		}
+
+		private void Log(Stopwatch time, string status, string message)
+		{
+			time.Stop();
+			message = $"[{DateTime.Now}] {message} - Time {time.Elapsed} ms";
+			Log(status, message);
+		}
+
+		public async Task Parse(string kind)
+		{
+			string errors = "";
 			Stopwatch time = new Stopwatch();
 			try
 			{
@@ -82,29 +78,26 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 				ProcessStartInfo info = GetInfo(kind);
 				using (Process process = Process.Start(info))
 				{
-					using (System.IO.StreamReader reader = process.StandardOutput)
-					{
-						_result[kind] = reader.ReadToEnd();
-					}
-					using (System.IO.StreamReader errorReader = process.StandardError)
-					{
-						_error[kind] = errorReader.ReadToEnd();
-					}
+					await Task.Run(() => {
+						using (System.IO.StreamReader reader = process.StandardOutput)
+						{
+							_result[kind] = reader.ReadToEnd();
+						}
+					});
+					await Task.Run(() => {
+						using (System.IO.StreamReader errorReader = process.StandardError)
+						{
+							errors = errorReader.ReadToEnd();
+						}
+					});
 					process.WaitForExit();
-					_exit[kind] = $"Process exit with code: {process.ExitCode}";
-					System.IO.File.WriteAllText($"C:/{kind}-ok.txt", _exit[kind]);
+					Log(time, $"{kind}-ok", $"Process exit with code: {process.ExitCode}. {errors}");
 				}
 			}
 			catch (Exception ex)
 			{
-				System.IO.File.WriteAllText($"C:/{kind}-error.txt", $"Message: '{ex.Message}', Callstack: {ex.StackTrace}");
-				// Error.Write($"Message: '{ex.Message}', Callstack: {ex.StackTrace}");
+				Log(time, $"{kind}-error", $"MSG: '{ex.Message}', Calls: {ex.StackTrace}, ERR: {errors}");
 			}
-			finally
-			{
-				time.Stop();
-			}
-			Results(time.Elapsed, kind);
 		}
 
 		public async Task ParseAll()
@@ -119,8 +112,8 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 			var task1 = Parse();*/
 
 			// /*
-			await Task.Run(() => { Parse("table"); });
-			await Task.Run(() => { Parse("model"); });
+			await Task.Run(async() => { await Parse("table"); });
+			await Task.Run(async() => { await Parse("model"); });
 			/*	// Task.Factory.StartNew(Parse),
 				//Task.Factory.StartNew(Parse)
 			}; */

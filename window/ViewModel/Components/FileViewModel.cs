@@ -21,8 +21,14 @@ namespace MathWindow.ViewModel.Components
 				{
 					NumberExpression.Default
 				},
-				Data = ListExpression.Default,
-				Result = GridExpression.Default,
+				Data = new ObservableCollection<ListExpression>
+				{
+					ListExpression.Default
+				},
+				Result = new ObservableCollection<GridExpression>
+				{
+					GridExpression.Default,
+				}
 			}
 		};
 

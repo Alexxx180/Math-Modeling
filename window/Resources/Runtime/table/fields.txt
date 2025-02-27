@@ -6,3 +6,4 @@ N =
 q = 
 X = 
 p = 
+Random

@@ -23,8 +23,8 @@ namespace MathWindow.ViewModel.Components.Data
 			}
 		}
 
-		private ListExpression _data;
-		public ListExpression Data
+		private ObservableCollection<ListExpression> _data;
+		public ObservableCollection<ListExpression> Data
 		{
 			get => _data;
 			set
@@ -34,8 +34,8 @@ namespace MathWindow.ViewModel.Components.Data
 			}
 		}
 
-		private GridExpression _result;
-		public GridExpression Result
+		private ObservableCollection<GridExpression> _result;
+		public ObservableCollection<GridExpression> Result
 		{
 			get => _result;
 			set

@@ -2,8 +2,10 @@ using System.Collections.ObjectModel;
 
 namespace MathWindow.ViewModel.Components.Data.Fields
 {
-    public class ListExpression : NameLabel
-    {
+	public class ListExpression : NameLabel
+	{
+		public readonly string Orientation = "Horizontal";
+
 		private ObservableCollection<string> _no;
 		public ObservableCollection<string> No
 		{
@@ -20,5 +22,5 @@ namespace MathWindow.ViewModel.Components.Data.Fields
 			Name = "N/A",
 			No = new ObservableCollection<string>()
 		};
-    }
+	}
 }

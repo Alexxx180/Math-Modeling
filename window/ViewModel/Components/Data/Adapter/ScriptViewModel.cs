@@ -11,28 +11,41 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 		private static string _total = " - ", _lists = " + ", _list = ", ";
 
 		private ObservableCollection<NumberExpression> _calculus;
-		private ListExpression _data;
-		private GridExpression _result;
+		private ObservableCollection<ListExpression> _data;
+		private ObservableCollection<GridExpression> _result;
 
 		private List<FileViewModel> _model;
 
 		private void AddResult(string field, string[] output)
 		{
-			_result.Name = field;
+			GridExpression values = new GridExpression
+			{
+				Name = field,
+				No = new ObservableCollection<List<string>>()
+			};
+
 			foreach(string text in output)
 			{
-				List<string> result = new List<string>();
+				// /*
 				string[] cells = text.Split(_list);
+				List<string> result = new List<string>();
 				foreach(string cell in cells) result.Add(cell);
-				_result.No.Add(result);
+				values.No.Add(result);
+				// */
+				// values.No.Add(new List<string> { text });
 			}
+			_result.Add(values);
 		}
 
 		private void AddData(string field, string[] output)
 		{
-			_data.Name = field;
-			foreach(string data in output)
-				_data.No.Add(data);
+			ListExpression listing = new ListExpression
+			{
+				Name = field,
+				No = new ObservableCollection<string>()
+			};
+			foreach(string data in output) listing.No.Add(data);
+			_data.Add(listing);
 		}
 
 		private void AddCalculus(string field, string output)
@@ -55,11 +68,8 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 		public FileViewModel GetModel(string output, string kind)
 		{
 			_calculus = new ObservableCollection<NumberExpression>();
-			_data = new ListExpression()
-			{
-				No = new ObservableCollection<string>()
-			};
-			_result = new GridExpression();
+			_data = new ObservableCollection<ListExpression>();
+			_result = new ObservableCollection<GridExpression>();
 
 			string[] fields = Defaults.GetLines($"{kind}/fields.txt");
 			string[] values = output.Split(_total);
@@ -70,7 +80,8 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 
 				if (field.Contains(_lists))
 				{
-					// AddResult(fields[length], field.Split(_lists));
+					// string f = fields[length];
+					AddResult(fields[length], field.Split(_lists));
 				}
 				else if (field.Contains(_list))
 				{
@@ -91,10 +102,6 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 
 			foreach(string kind in parser.Kinds)
 				_model.Add(GetModel(parser.Output(kind), kind));
-				/*if (parser.HasError(kind))
-					_model.Add(FileViewModel.Default);
-				else
-					_model.Add(GetModel(parser.Output(kind), kind));*/
 
 			return new MainViewModel { Table = _model[0], Model = _model[1] };
 		}

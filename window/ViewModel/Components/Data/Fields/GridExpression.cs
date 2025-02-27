@@ -3,8 +3,10 @@ using System.Collections.ObjectModel;
 
 namespace MathWindow.ViewModel.Components.Data.Fields
 {
-    public class GridExpression : NameLabel
-    {
+	public class GridExpression : NameLabel
+	{
+		public readonly string Orientation = "Vertical";
+
 		public GridExpression() {}
 
 		private ObservableCollection<List<string>> _no;
@@ -22,5 +24,5 @@ namespace MathWindow.ViewModel.Components.Data.Fields
 		{
 			Name = "N/A", No = new ObservableCollection<List<string>>()
 		};
-    }
+	}
 }

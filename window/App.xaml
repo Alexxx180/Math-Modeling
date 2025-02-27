@@ -41,37 +41,101 @@
 				</Border>
 			</DataTemplate>
 
+			<DataTemplate x:Key="ExpressText">
+				<TextBlock Text="{Binding}"/>
+			</DataTemplate>
+
+			<DataTemplate x:Key="ExpressList">
+				<StackPanel Orientation="Horizontal">
+					<StackPanel.Resources>
+						<Style TargetType="{x:Type TextBlock}">
+							<Setter Property="Margin" Value="10,5,10,5"/>
+						</Style>
+					</StackPanel.Resources> 
+
+					<TextBlock Text="{Binding Path=Name}"/>
+					<ListBox ItemTemplate="{StaticResource ExpressText}" ItemsSource="{Binding Path=No}">
+						<ListBox.ItemsPanel>
+							<ItemsPanelTemplate>
+								<StackPanel Orientation="Horizontal"/>
+							</ItemsPanelTemplate>
+						</ListBox.ItemsPanel>
+					</ListBox>
+				</StackPanel>
+			</DataTemplate>
+
+			<DataTemplate x:Key="ExpressGrid">
+				<StackPanel Orientation="Vertical">
+					<StackPanel.Resources>
+						<Style TargetType="{x:Type TextBlock}">
+							<Setter Property="Margin" Value="10,5,10,5"/>
+						</Style>
+					</StackPanel.Resources> 
+
+					<TextBlock Text="{Binding Path=Name}"/>
+					<DataGrid ItemsSource="{Binding Path=No}">
+						
+					</DataGrid>
+					<!--<ListBox ItemTemplate="{StaticResource ExpressText}" ItemsSource="{Binding Path=No}">
+						<ListBox.ItemsPanel>
+							<ItemsPanelTemplate>
+								<StackPanel Orientation="Horizontal"/>
+							</ItemsPanelTemplate>
+						</ListBox.ItemsPanel>
+					</ListBox>-->
+				</StackPanel>
+			</DataTemplate>
+
 			<ControlTemplate x:Key="ExpressFile">
-				<ListBox ItemTemplate="{StaticResource ExpressNumber}" ItemsSource="{Binding Path=Data.Calculus}">
-					<ListBox.ItemsPanel>
-						<ItemsPanelTemplate>
-							<WrapPanel/> <!-- Width="300"-->
-						</ItemsPanelTemplate>
-					</ListBox.ItemsPanel>
-				</ListBox>
+				<StackPanel>
+					<StackPanel.Resources>
+						<Style TargetType="{x:Type ListBox}">
+							<Setter Property="Margin" Value="10,5,10,5"/>
+						</Style>
+						<Style TargetType="{x:Type TextBlock}">
+							<Setter Property="Margin" Value="10,5,10,5"/>
+						</Style>
+					</StackPanel.Resources>
+
+					<TextBlock Text="Расчет"/>
+					<ListBox ItemTemplate="{StaticResource ExpressNumber}" ItemsSource="{Binding Path=Data.Calculus}">
+						<ListBox.ItemsPanel>
+							<ItemsPanelTemplate>
+								<WrapPanel/>
+							</ItemsPanelTemplate>
+						</ListBox.ItemsPanel>
+					</ListBox>
+
+					<TextBlock Text="Данные"/>
+					<ListBox ItemTemplate="{StaticResource ExpressList}" ItemsSource="{Binding Path=Data.Data}" />
+
+					<TextBlock Text="Результат"/>
+					<ListBox ItemTemplate="{StaticResource ExpressGrid}" ItemsSource="{Binding Path=Data.Result}" />
+				</StackPanel>
 			</ControlTemplate>
 
 			<DataTemplate DataType="{x:Type vm:MainViewModel}">
 				<ContentControl>
-					<TabControl>
-						<TabItem>
-							<TabItem.Header>
-								<TextBlock Text="Дискретная модель"/>
-							</TabItem.Header>
-							<TabItem.Content>
-								Sample text
-							</TabItem.Content>
-						</TabItem>
-						<TabItem>
-							<TabItem.Header>
-								<TextBlock Text="Непрерывная модель"/>
-							</TabItem.Header>
-							<TabItem.Content>
-								<ContentControl Template="{StaticResource ExpressFile}" DataContext="{Binding Path=Model}"/>
-								<!-- <ContentControl DataContext="{Binding Path=Model}">Sample text</ContentControl> -->
-							</TabItem.Content>
-						</TabItem>
-					</TabControl>
+					<Grid>
+						<TabControl>
+							<TabItem>
+								<TabItem.Header>
+									<TextBlock Text="Дискретная модель"/>
+								</TabItem.Header>
+								<TabItem.Content>
+									<ContentControl Template="{StaticResource ExpressFile}" DataContext="{Binding Path=Table}"/>
+								</TabItem.Content>
+							</TabItem>
+							<TabItem>
+								<TabItem.Header>
+									<TextBlock Text="Непрерывная модель"/>
+								</TabItem.Header>
+								<TabItem.Content>
+									<ContentControl Template="{StaticResource ExpressFile}" DataContext="{Binding Path=Model}"/>
+								</TabItem.Content>
+							</TabItem>
+						</TabControl>
+					</Grid>
 				</ContentControl>
 			</DataTemplate>
 

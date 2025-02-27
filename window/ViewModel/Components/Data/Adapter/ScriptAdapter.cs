@@ -22,8 +22,8 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 
 		public async Task Some()
 		{
-			await Task.Run(() => {
-				_parser.Parse("table");
+			await Task.Run(async() => {
+				await _parser.Parse("table");
 				string info = _parser.Output("table");
 				_model.Model.Data.Calculus.Add(new NumberExpression("Output", info));
 				/*
