@@ -73,16 +73,20 @@
 					</StackPanel.Resources> 
 
 					<TextBlock Text="{Binding Path=Name}"/>
-					<DataGrid ItemsSource="{Binding Path=No}">
-						
+					<DataGrid ItemsSource="{Binding Path=No}" HeadersVisibility="Column">
+						<DataGrid.Columns>
+							<DataGridTextColumn Header="q1" Binding="{Binding Path=[0]}" Width="30" />
+							<DataGridTextColumn Header="q2" Binding="{Binding Path=[1]}" Width="30" />
+							<DataGridTextColumn Header="q3" Binding="{Binding Path=[2]}" Width="30" />
+							<DataGridTextColumn Header="q4" Binding="{Binding Path=[3]}" Width="30" />
+							<DataGridTextColumn Header="q5" Binding="{Binding Path=[4]}" Width="30" />
+							<DataGridTextColumn Header="q6" Binding="{Binding Path=[5]}" Width="30" />
+							<DataGridTextColumn Header="q7" Binding="{Binding Path=[6]}" Width="30" />
+							<DataGridTextColumn Header="q8" Binding="{Binding Path=[7]}" Width="30" />
+							<DataGridTextColumn Header="q9" Binding="{Binding Path=[8]}" Width="30" />
+							<DataGridTextColumn Header="q10" Binding="{Binding Path=[9]}" Width="30" />
+						</DataGrid.Columns>
 					</DataGrid>
-					<!--<ListBox ItemTemplate="{StaticResource ExpressText}" ItemsSource="{Binding Path=No}">
-						<ListBox.ItemsPanel>
-							<ItemsPanelTemplate>
-								<StackPanel Orientation="Horizontal"/>
-							</ItemsPanelTemplate>
-						</ListBox.ItemsPanel>
-					</ListBox>-->
 				</StackPanel>
 			</DataTemplate>
 

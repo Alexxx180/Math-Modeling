@@ -5,8 +5,6 @@ namespace MathWindow.ViewModel.Components.Data.Fields
 {
 	public class GridExpression : NameLabel
 	{
-		public readonly string Orientation = "Vertical";
-
 		public GridExpression() {}
 
 		private ObservableCollection<List<string>> _no;

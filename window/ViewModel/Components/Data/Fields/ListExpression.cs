@@ -4,8 +4,6 @@ namespace MathWindow.ViewModel.Components.Data.Fields
 {
 	public class ListExpression : NameLabel
 	{
-		public readonly string Orientation = "Horizontal";
-
 		private ObservableCollection<string> _no;
 		public ObservableCollection<string> No
 		{
