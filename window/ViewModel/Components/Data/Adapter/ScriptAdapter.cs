@@ -15,7 +15,7 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 
 		public ScriptAdapter()
 		{
-			_model = new MainViewModel();
+			// _model = new MainViewModel();
 			_parser = new ScriptParser();
 			_viewModelFactory = new ScriptViewModel();
 		}
@@ -23,7 +23,7 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 		public async Task Some()
 		{
 			await Task.Run(() => {
-				_parser.Parse();
+				_parser.Parse("table");
 				string info = _parser.Output("table");
 				_model.Model.Data.Calculus.Add(new NumberExpression("Output", info));
 				/*
@@ -35,11 +35,11 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 
 		public async Task Connect()
 		{
-			// await _parser.ParseAll();
-			await Some();
+			await _parser.ParseAll();
+			// await Some();
 			// await Some();
 
-			//return _viewModelFactory.GetMainViewModel(_parser);
+			_model = _viewModelFactory.GetMainViewModel(_parser);
 		}
 	}
 }

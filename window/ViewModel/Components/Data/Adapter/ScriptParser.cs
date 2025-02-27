@@ -15,7 +15,6 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 
 		private string[] _kinds;
 		public string[] Kinds => _kinds;
-		private int _no = 0;
 
 		private string _script = "main.py", _app = "project", _interpreter;
 		private Dictionary<string, string> _result, _error, _exit;
@@ -73,9 +72,8 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 			};
 		}
 
-		public void Parse()
+		public void Parse(string kind)
 		{
-			string kind = _kinds[_no++];
 			Stopwatch time = new Stopwatch();
 			try
 			{
@@ -121,11 +119,12 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 			var task1 = Parse();*/
 
 			// /*
-			Task[] tasks = { new Task(Parse), new Task(Parse) };
+			await Task.Run(() => { Parse("table"); });
+			await Task.Run(() => { Parse("model"); });
 			/*	// Task.Factory.StartNew(Parse),
 				//Task.Factory.StartNew(Parse)
 			}; */
-			await Task.WhenAll(tasks); // */
+			// await Task.WaitAll(tasks); // */
 		}
 
 	}

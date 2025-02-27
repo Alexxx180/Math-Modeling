@@ -8,7 +8,7 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 {
 	public class ScriptViewModel
 	{
-		private static string _lists = " + ", _list = ", ";
+		private static string _total = " - ", _lists = " + ", _list = ", ";
 
 		private ObservableCollection<NumberExpression> _calculus;
 		private ListExpression _data;
@@ -40,11 +40,20 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 			_calculus.Add(new NumberExpression(field, output));
 		}
 
+		public FileViewModel SetupModel()
+		{
+			return new FileViewModel
+			{
+				Data = new TemplateViewModel() {
+					Calculus = _calculus,
+					Data = _data,
+					Result = _result
+				}
+			};
+		}
+
 		public FileViewModel GetModel(string output, string kind)
 		{
-			if (output == string.Empty)
-				return FileViewModel.Default;
-
 			_calculus = new ObservableCollection<NumberExpression>();
 			_data = new ListExpression()
 			{
@@ -53,7 +62,7 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 			_result = new GridExpression();
 
 			string[] fields = Defaults.GetLines($"{kind}/fields.txt");
-			string[] values = output.Split(" - ");
+			string[] values = output.Split(_total);
 
 			int length = values.Length;
 			while (--length >= 0) {
@@ -61,7 +70,7 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 
 				if (field.Contains(_lists))
 				{
-					AddResult(fields[length], field.Split(_lists));
+					// AddResult(fields[length], field.Split(_lists));
 				}
 				else if (field.Contains(_list))
 				{
@@ -72,15 +81,8 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 					AddCalculus(fields[length], field);
 				}
 			}
-
-			return new FileViewModel($"{kind}/config.txt")
-			{
-				Data = new TemplateViewModel() {
-					Calculus = _calculus,
-					Data = _data,
-					Result = _result
-				}
-			};
+			// ($"{kind}/config.txt")
+			return SetupModel();
 		}
 
 		public MainViewModel GetMainViewModel(ScriptParser parser)
@@ -88,10 +90,11 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 			_model = new List<FileViewModel>();
 
 			foreach(string kind in parser.Kinds)
-				if (parser.HasError(kind))
+				_model.Add(GetModel(parser.Output(kind), kind));
+				/*if (parser.HasError(kind))
 					_model.Add(FileViewModel.Default);
 				else
-					_model.Add(GetModel(parser.Output(kind), kind));
+					_model.Add(GetModel(parser.Output(kind), kind));*/
 
 			return new MainViewModel { Table = _model[0], Model = _model[1] };
 		}
