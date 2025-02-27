@@ -1,8 +1,8 @@
-M = 
-D = 
-m = 
-g = 
-N = 
-q = 
-X = 
+M =
+D =
+m =
+g =
+N =
+q =
+X =
 Random

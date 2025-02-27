@@ -5,8 +5,6 @@ namespace MathWindow.ViewModel.Components.Data.Fields
 {
 	public class GridExpression : NameLabel
 	{
-		public GridExpression() {}
-
 		private ObservableCollection<List<string>> _no;
 		public ObservableCollection<List<string>> No
 		{
@@ -20,7 +18,7 @@ namespace MathWindow.ViewModel.Components.Data.Fields
 
 		public static GridExpression Default = new GridExpression
 		{
-			Name = "N/A", No = new ObservableCollection<List<string>>()
+			Name = Defaults.NoValue, No = new ObservableCollection<List<string>>()
 		};
 	}
 }

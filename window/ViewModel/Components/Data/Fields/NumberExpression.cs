@@ -2,13 +2,6 @@
 {
 	public class NumberExpression : NameLabel
 	{
-		public NumberExpression() {}
-		public NumberExpression(string name, string no)
-		{
-			Name = name;
-			No = no;
-		}
-
 		private string _no;
 		public string No
 		{
@@ -20,6 +13,10 @@
 			}
 		}
 
-		public static NumberExpression Default = new NumberExpression("N/A", "N/A");
+		public static NumberExpression Default = new NumberExpression
+		{
+			Name = Defaults.NoValue,
+			No = Defaults.NoValue
+		};
 	}
 }

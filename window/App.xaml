@@ -5,33 +5,12 @@
 			 Startup="OnStartup">
 	<Application.Resources>
 		<ResourceDictionary>
-			<!--<ResourceDictionary.MergedDictionaries>
-				<ResourceDictionary Source="Resources/Styles/Total.xaml"/>
-				<ResourceDictionary Source="Resources/Styles/Text.xaml"/>
-				<ResourceDictionary Source="Resources/Styles/Editing/Buttons.xaml"/>
-				<ResourceDictionary Source="Resources/Styles/Editing/Input.xaml"/>
-				
-				<ResourceDictionary Source="Resources/Templates/Controls/Fields.xaml"/>
-				<ResourceDictionary Source="Resources/Templates/Data/Items.xaml"/>
-
-				<ResourceDictionary Source="Resources/Templates/Controls/Windows/Tabs/Information.xaml"/>
-				<ResourceDictionary Source="Resources/Templates/Controls/Windows/Tabs/Documents.xaml"/>
-				<ResourceDictionary Source="Resources/Templates/Controls/Windows/Tabs/Mode/View.xaml"/>
-				<ResourceDictionary Source="Resources/Templates/Controls/Windows/Tabs/Mode/Edit.xaml"/>
-
-				<ResourceDictionary Source="Resources/Templates/Data/Hierarchy/Rooter.xaml"/>
-				<ResourceDictionary Source="Resources/Templates/Data/Hierarchy/Dialogs/Dependencies.xaml"/>
-				
-				<ResourceDictionary Source="Resources/Templates/Controls/Windows/Main.xaml"/>
-				<ResourceDictionary Source="Resources/Templates/Controls/Windows/Editor.xaml"/>
-			</ResourceDictionary.MergedDictionaries>-->
-
 			<DataTemplate x:Key="ExpressNumber">
 				<Border>
 					<StackPanel Orientation="Horizontal">
 						<StackPanel.Resources>
 							<Style TargetType="{x:Type TextBlock}">
-								<Setter Property="Margin" Value="10,5,10,5"/>
+								<Setter Property="Margin" Value="5"/>
 							</Style>
 						</StackPanel.Resources> 
 
@@ -42,18 +21,12 @@
 			</DataTemplate>
 
 			<DataTemplate x:Key="ExpressText">
-				<TextBlock Text="{Binding}"/>
+				<TextBlock Text="{Binding}" Margin="5,0,5,0"/>
 			</DataTemplate>
 
 			<DataTemplate x:Key="ExpressList">
 				<StackPanel Orientation="Horizontal">
-					<StackPanel.Resources>
-						<Style TargetType="{x:Type TextBlock}">
-							<Setter Property="Margin" Value="10,5,10,5"/>
-						</Style>
-					</StackPanel.Resources> 
-
-					<TextBlock Text="{Binding Path=Name}"/>
+					<TextBlock Text="{Binding Path=Name}" Margin="5,7,0,0" />
 					<ListBox ItemTemplate="{StaticResource ExpressText}" ItemsSource="{Binding Path=No}">
 						<ListBox.ItemsPanel>
 							<ItemsPanelTemplate>
@@ -66,11 +39,11 @@
 
 			<DataTemplate x:Key="ExpressGrid">
 				<StackPanel Orientation="Vertical">
-					<StackPanel.Resources>
+					<!--<StackPanel.Resources>
 						<Style TargetType="{x:Type TextBlock}">
 							<Setter Property="Margin" Value="10,5,10,5"/>
 						</Style>
-					</StackPanel.Resources> 
+					</StackPanel.Resources>-->
 
 					<TextBlock Text="{Binding Path=Name}"/>
 					<DataGrid IsReadOnly="True" ItemsSource="{Binding Path=No}" HeadersVisibility="Column" AutoGenerateColumns="False">
@@ -91,6 +64,7 @@
 			</DataTemplate>
 
 			<ControlTemplate x:Key="ExpressFile">
+				<ScrollViewer VerticalScrollBarVisibility="Auto">
 				<StackPanel>
 					<StackPanel.Resources>
 						<Style TargetType="{x:Type ListBox}">
@@ -116,28 +90,24 @@
 					<TextBlock Text="Результат"/>
 					<ListBox ItemTemplate="{StaticResource ExpressGrid}" ItemsSource="{Binding Path=Data.Result}" />
 				</StackPanel>
+				</ScrollViewer>
 			</ControlTemplate>
 
 			<DataTemplate DataType="{x:Type vm:MainViewModel}">
-				<ContentControl>
-					<Grid>
-						<TabControl>
-							<TabItem Header="Дискретная модель">
-								<TabItem.Content>
-									<ContentControl Template="{StaticResource ExpressFile}" DataContext="{Binding Path=Table}"/>
-								</TabItem.Content>
-							</TabItem>
-							<TabItem>
-								<TabItem.Header>
-									<TextBlock Text="Непрерывная модель"/>
-								</TabItem.Header>
-								<TabItem.Content>
-									<ContentControl Template="{StaticResource ExpressFile}" DataContext="{Binding Path=Model}"/>
-								</TabItem.Content>
-							</TabItem>
-						</TabControl>
-					</Grid>
-				</ContentControl>
+				<Grid>
+					<TabControl>
+						<TabItem Header="Дискретная модель">
+							<TabItem.Content>
+								<ContentControl Template="{StaticResource ExpressFile}" DataContext="{Binding Path=Table}"/>
+							</TabItem.Content>
+						</TabItem>
+						<TabItem Header="Непрерывная модель">
+							<TabItem.Content>
+								<ContentControl Template="{StaticResource ExpressFile}" DataContext="{Binding Path=Model}"/>
+							</TabItem.Content>
+						</TabItem>
+					</TabControl>
+				</Grid>
 			</DataTemplate>
 
 		</ResourceDictionary>

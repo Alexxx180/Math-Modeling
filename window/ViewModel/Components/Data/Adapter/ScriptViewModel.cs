@@ -61,7 +61,7 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 
 		private void AddCalculus(string field, string[] output)
 		{
-			_calculus.Add(new NumberExpression(field, output[0]));
+			_calculus.Add(new NumberExpression { Name = field, No = output[0] });
 		}
 
 		private FileViewModel SetupModel()

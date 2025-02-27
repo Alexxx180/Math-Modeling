@@ -17,7 +17,7 @@ namespace MathWindow.ViewModel.Components.Data.Fields
 
 		public static ListExpression Default = new ListExpression
 		{
-			Name = "N/A", No = new List<string>()
+			Name = Defaults.NoValue, No = new List<string>()
 		};
 	}
 }

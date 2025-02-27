@@ -1,9 +1,9 @@
-M = 
-D = 
-m = 
-g = 
-N = 
-q = 
-X = 
-p = 
+M =
+D =
+m =
+g =
+N =
+q =
+X =
+p =
 Random

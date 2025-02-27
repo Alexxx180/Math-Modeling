@@ -102,22 +102,8 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 
 		public async Task ParseAll()
 		{
-			// List<Task> tasks = new List<Task>();
-			/* for (byte i = 0; i < 2; i++)
-			{
-				var LastTask = new Task(SomeFunction);
-				LastTask.Start();
-				TaskList.Add(LastTask);
-			}
-			var task1 = Parse();*/
-
-			// /*
 			await Task.Run(async() => { await Parse("table"); });
 			await Task.Run(async() => { await Parse("model"); });
-			/*	// Task.Factory.StartNew(Parse),
-				//Task.Factory.StartNew(Parse)
-			}; */
-			// await Task.WaitAll(tasks); // */
 		}
 
 	}
