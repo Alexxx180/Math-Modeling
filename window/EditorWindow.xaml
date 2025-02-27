@@ -6,7 +6,7 @@
 		WindowStartupLocation="CenterScreen"
 		mc:Ignorable="d"
 		x:Name="Editing"
-		Icon="/Resources/Images/Icons/favicon.ico"
+		Icon="/Resources/favicon.ico"
 		Width="600" Height="400"
 		MinWidth="320" MinHeight="200" Title="Математическое моделирование">
 </Window>

@@ -5,11 +5,6 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 {
 	public static class Search
 	{
-		public static string Python(string folder)
-		{
-			return "C:/Python312/python.exe";
-		}
-
 		public static string File(string directory, string name)
 		{
 			Assembly exe = Assembly.GetExecutingAssembly();

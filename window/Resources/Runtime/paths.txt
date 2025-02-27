@@ -1,3 +1,1 @@
-300
-#FFFFFF
 C:\Python312\python.exe

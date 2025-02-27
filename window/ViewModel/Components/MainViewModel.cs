@@ -6,9 +6,16 @@ namespace MathWindow.ViewModel.Components
 {
 	public class MainViewModel : NotifyPropertyChanged
 	{
-		public MainViewModel() {
-			Table = FileViewModel.Default;
-			Model = FileViewModel.Default;
+		public static MainViewModel Default
+		{
+			get
+			{
+				return new MainViewModel
+				{
+					Table = FileViewModel.Default,
+					Model = FileViewModel.Default,
+				};
+			}
 		}
 
 		public FileViewModel Table { get; set; }

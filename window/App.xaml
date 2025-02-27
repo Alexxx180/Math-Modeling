@@ -39,12 +39,6 @@
 
 			<DataTemplate x:Key="ExpressGrid">
 				<StackPanel Orientation="Vertical">
-					<!--<StackPanel.Resources>
-						<Style TargetType="{x:Type TextBlock}">
-							<Setter Property="Margin" Value="10,5,10,5"/>
-						</Style>
-					</StackPanel.Resources>-->
-
 					<TextBlock Text="{Binding Path=Name}"/>
 					<DataGrid IsReadOnly="True" ItemsSource="{Binding Path=No}" HeadersVisibility="Column" AutoGenerateColumns="False">
 						<DataGrid.Columns>
@@ -109,7 +103,6 @@
 					</TabControl>
 				</Grid>
 			</DataTemplate>
-
 		</ResourceDictionary>
 	</Application.Resources>
 </Application>

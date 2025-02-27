@@ -82,8 +82,12 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 			_calculus = new ObservableCollection<NumberExpression>();
 			_data = new ObservableCollection<ListExpression>();
 			_result = new ObservableCollection<GridExpression>();
+			// 
+			// return SetupModel();
 
-			string[] fields = Defaults.GetLines($"{kind}/fields.txt");
+			//string[] fields = new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+			//string[] fields = Defaults.GetLines($"fields/{kind}.txt");
+			string[] fields = Defaults.Config.Fields[kind];
 			string[] values = output.Split(_total);
 
 			int length = values.Length;
@@ -97,25 +101,13 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 						entry.Value(fields[length], sequence.Split(entry.Key));
 						search = false;
 					}
-
-				/* if (field.Contains(_lists))
-				{
-					AddResult(fields[length], field.Split(_lists));
-				}
-				else if (field.Contains(_list))
-				{
-					AddData(fields[length], field.Split(_list));
-				}
-				else
-				{
-					AddCalculus(fields[length], field);
-				}*/
 			}
 			return SetupModel();
 		}
 
 		public MainViewModel GetMainViewModel(ScriptParser parser)
 		{
+			// return new MainViewModel { Table = FileViewModel.Default, Model = FileViewModel.Default };
 			_model = new List<FileViewModel>();
 
 			foreach(string kind in parser.Kinds)

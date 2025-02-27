@@ -8,9 +8,8 @@ namespace MathWindow.ViewModel.Components
 {
 	public class FileViewModel : NotifyPropertyChanged
 	{
-		public FileViewModel() {}
-		public FileViewModel(string config) {
-			Width = Convert.ToInt32(Defaults.GetLines(config).First());
+		public FileViewModel() {
+			// Width = Defaults.Config.Margin.Overall;
 		}
 
 		public static FileViewModel Default = new FileViewModel

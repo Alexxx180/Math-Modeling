@@ -21,6 +21,7 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 
 		public async Task Connect()
 		{
+			//_model = new MainViewModel { Table = FileViewModel.Default, Model = FileViewModel.Default };
 			await _parser.ParseAll();
 			_model = _viewModelFactory.GetMainViewModel(_parser);
 		}

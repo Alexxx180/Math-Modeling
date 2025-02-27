@@ -8,9 +8,7 @@ namespace MathWindow.ViewModel
 		#region INotifyPropertyChanged Members
 		public event PropertyChangedEventHandler PropertyChanged;
 
-		/// <summary>
-		/// Raises this object's PropertyChanged event.
-		/// </summary>
+		/// <summary> Raises this object's PropertyChanged event. </summary>
 		/// <param name="propertyName">The property with a new value.</param>
 		protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
 		{

@@ -7,11 +7,6 @@ namespace MathWindow.ViewModel.Components.Data
 {
 	public class TemplateViewModel : NameLabel
 	{
-		public TemplateViewModel() {}
-		public TemplateViewModel(string name) {
-			Name = name;
-		}
-
 		private ObservableCollection<NumberExpression> _calculus;
 		public ObservableCollection<NumberExpression> Calculus
 		{
