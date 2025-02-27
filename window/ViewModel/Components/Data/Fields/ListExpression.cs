@@ -1,11 +1,11 @@
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace MathWindow.ViewModel.Components.Data.Fields
 {
 	public class ListExpression : NameLabel
 	{
-		private ObservableCollection<string> _no;
-		public ObservableCollection<string> No
+		private List<string> _no;
+		public List<string> No
 		{
 			get => _no;
 			set
@@ -15,10 +15,9 @@ namespace MathWindow.ViewModel.Components.Data.Fields
 			}
 		}
 
-		public static ListExpression Default = new ListExpression()
+		public static ListExpression Default = new ListExpression
 		{
-			Name = "N/A",
-			No = new ObservableCollection<string>()
+			Name = "N/A", No = new List<string>()
 		};
 	}
 }
