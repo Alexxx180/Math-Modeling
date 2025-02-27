@@ -29,7 +29,13 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 				// /*
 				string[] cells = text.Split(_list);
 				List<string> result = new List<string>();
-				foreach(string cell in cells) result.Add(cell);
+				foreach(string cell in cells)
+				{
+					if (cell.Contains("''"))
+						result.Add(cell.Replace("'", ""));
+					else
+						result.Add(cell);
+				}
 				values.No.Add(result);
 				// */
 				// values.No.Add(new List<string> { text });
