@@ -20,9 +20,10 @@ namespace MathWindow.ViewModel
 
 		private Defaults()
 		{
-			Colors = new ConfigColors(Defaults.GetLines($"colors.txt"));
-			Margin = new ConfigMargin(Defaults.GetLines($"margin.txt"));
-			Paths = new ConfigPaths(Defaults.GetLines($"paths.txt"));
+			Fonts = new ConfigFonts(GetLines($"custom/fonts.txt"));
+			Colors = new ConfigColors(GetLines($"custom/colors.txt"));
+			Margin = new ConfigMargin(GetLines($"custom/margin.txt"));
+			Paths = new ConfigPaths(GetLines($"paths.txt"));
 			Fields = new Dictionary<string, string[]>
 			{
 				{ "table", GetLines("fields/table.txt") },
@@ -34,6 +35,7 @@ namespace MathWindow.ViewModel
 		public ConfigColors Colors { get; set; }
 		public ConfigMargin Margin { get; set; }
 		public ConfigPaths Paths { get; set; }
+		public ConfigFonts Fonts { get; set; }
 
 		public static Defaults Config
 		{

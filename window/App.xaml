@@ -2,11 +2,12 @@
 			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 xmlns:vm="clr-namespace:MathWindow.ViewModel.Components"
+			 xmlns:vd="clr-namespace:MathWindow.ViewModel"
 			 Startup="OnStartup">
 	<Application.Resources>
 		<ResourceDictionary>
 			<DataTemplate x:Key="ExpressNumber">
-				<Border>
+				<Border Margin="{Binding Path=Margin.Calculus}">
 					<StackPanel Orientation="Horizontal">
 						<StackPanel.Resources>
 							<Style TargetType="{x:Type TextBlock}">
@@ -21,12 +22,12 @@
 			</DataTemplate>
 
 			<DataTemplate x:Key="ExpressText">
-				<TextBlock Text="{Binding}" Margin="5,0,5,0"/>
+				<TextBlock Text="{Binding}"/>
 			</DataTemplate>
 
 			<DataTemplate x:Key="ExpressList">
 				<StackPanel Orientation="Horizontal">
-					<TextBlock Text="{Binding Path=Name}" Margin="5,7,0,0" />
+					<TextBlock Text="{Binding Path=Name}" Margin="{Binding Path=Margin.Data}" />
 					<ListBox ItemTemplate="{StaticResource ExpressText}" ItemsSource="{Binding Path=No}">
 						<ListBox.ItemsPanel>
 							<ItemsPanelTemplate>
@@ -39,19 +40,24 @@
 
 			<DataTemplate x:Key="ExpressGrid">
 				<StackPanel Orientation="Vertical">
-					<TextBlock Text="{Binding Path=Name}"/>
+					<TextBlock Margin="{Binding Path=Margin.Result}" Text="{Binding Path=Name}"/>
 					<DataGrid IsReadOnly="True" ItemsSource="{Binding Path=No}" HeadersVisibility="Column" AutoGenerateColumns="False">
+						<DataGrid.Resources>
+							<Style TargetType="{x:Type DataGridColumnHeader}">
+								<Setter Property="Width" Value="50"/>
+							</Style>
+						</DataGrid.Resources>
 						<DataGrid.Columns>
-							<DataGridTextColumn Header="q1" Binding="{Binding Path=[0]}" Width="30" />
-							<DataGridTextColumn Header="q2" Binding="{Binding Path=[1]}" Width="30" />
-							<DataGridTextColumn Header="q3" Binding="{Binding Path=[2]}" Width="30" />
-							<DataGridTextColumn Header="q4" Binding="{Binding Path=[3]}" Width="30" />
-							<DataGridTextColumn Header="q5" Binding="{Binding Path=[4]}" Width="30" />
-							<DataGridTextColumn Header="q6" Binding="{Binding Path=[5]}" Width="30" />
-							<DataGridTextColumn Header="q7" Binding="{Binding Path=[6]}" Width="30" />
-							<DataGridTextColumn Header="q8" Binding="{Binding Path=[7]}" Width="30" />
-							<DataGridTextColumn Header="q9" Binding="{Binding Path=[8]}" Width="30" />
-							<DataGridTextColumn Header="q10" Binding="{Binding Path=[9]}" Width="30" />
+							<DataGridTextColumn Header="q1" Binding="{Binding Path=[0]}"/>
+							<DataGridTextColumn Header="q2" Binding="{Binding Path=[1]}"/>
+							<DataGridTextColumn Header="q3" Binding="{Binding Path=[2]}"/>
+							<DataGridTextColumn Header="q4" Binding="{Binding Path=[3]}"/>
+							<DataGridTextColumn Header="q5" Binding="{Binding Path=[4]}"/>
+							<DataGridTextColumn Header="q6" Binding="{Binding Path=[5]}"/>
+							<DataGridTextColumn Header="q7" Binding="{Binding Path=[6]}"/>
+							<DataGridTextColumn Header="q8" Binding="{Binding Path=[7]}"/>
+							<DataGridTextColumn Header="q9" Binding="{Binding Path=[8]}"/>
+							<DataGridTextColumn Header="q10" Binding="{Binding Path=[9]}"/>
 						</DataGrid.Columns>
 					</DataGrid>
 				</StackPanel>
@@ -65,12 +71,13 @@
 							<Setter Property="Margin" Value="10,5,10,5"/>
 						</Style>
 						<Style TargetType="{x:Type TextBlock}">
-							<Setter Property="Margin" Value="10,5,10,5"/>
+							<Setter Property="Margin" Value="{Binding Path=Margin.Overall}"/>
+							<Setter Property="FontFamily" Value="{Binding Path=Fonts.Overall}"/>
 						</Style>
 					</StackPanel.Resources>
 
 					<TextBlock Text="Расчет"/>
-					<ListBox ItemTemplate="{StaticResource ExpressNumber}" ItemsSource="{Binding Path=Data.Calculus}">
+					<ListBox FontFamily="{Binding Path=Fonts.Calculus}" Background="{Binding Colors.Calculus}" ItemTemplate="{StaticResource ExpressNumber}" ItemsSource="{Binding Path=Data.Calculus}">
 						<ListBox.ItemsPanel>
 							<ItemsPanelTemplate>
 								<WrapPanel/>
@@ -79,10 +86,10 @@
 					</ListBox>
 
 					<TextBlock Text="Данные"/>
-					<ListBox ItemTemplate="{StaticResource ExpressList}" ItemsSource="{Binding Path=Data.Data}" />
+					<ListBox FontFamily="{Binding Path=Fonts.Data}" Background="{Binding Colors.Data}" ItemTemplate="{StaticResource ExpressList}" ItemsSource="{Binding Path=Data.Data}" />
 
 					<TextBlock Text="Результат"/>
-					<ListBox ItemTemplate="{StaticResource ExpressGrid}" ItemsSource="{Binding Path=Data.Result}" />
+					<ListBox FontFamily="{Binding Path=Fonts.Result}" Background="{Binding Colors.Result}" ItemTemplate="{StaticResource ExpressGrid}" ItemsSource="{Binding Path=Data.Result}" />
 				</StackPanel>
 				</ScrollViewer>
 			</ControlTemplate>

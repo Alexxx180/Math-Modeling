@@ -2,9 +2,9 @@ using System;
 
 namespace MathWindow.ViewModel.Config
 {
-	public class ConfigColors
+	public class ConfigFonts
 	{
-		public ConfigColors(string[] config)
+		public ConfigFonts(string[] config)
 		{
 			Overall = config[0];
 			Calculus = config[1];

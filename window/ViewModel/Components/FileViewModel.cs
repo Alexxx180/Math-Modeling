@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections.ObjectModel;
 using MathWindow.ViewModel.Components.Data;
 using MathWindow.ViewModel.Components.Data.Fields;
+using MathWindow.ViewModel.Config;
 
 namespace MathWindow.ViewModel.Components
 {
@@ -33,5 +34,8 @@ namespace MathWindow.ViewModel.Components
 
 		public TemplateViewModel Data { get; set; }
 		public int Width { get; set; }
+		public ConfigFonts Fonts => Defaults.Config.Fonts;
+		public ConfigColors Colors => Defaults.Config.Colors;
+		public ConfigMargin Margin => Defaults.Config.Margin;
 	}
 }

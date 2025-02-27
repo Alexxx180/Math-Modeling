@@ -1,4 +1,6 @@
-﻿namespace MathWindow.ViewModel.Components.Data.Fields
+﻿using MathWindow.ViewModel.Config;
+
+namespace MathWindow.ViewModel.Components.Data.Fields
 {
 	public class NumberExpression : NameLabel
 	{
@@ -18,5 +20,7 @@
 			Name = Defaults.NoValue,
 			No = Defaults.NoValue
 		};
+
+		public ConfigMargin Margin => Defaults.Config.Margin;
 	}
 }

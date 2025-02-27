@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using MathWindow.ViewModel.Config;
 
 namespace MathWindow.ViewModel.Components.Data.Fields
 {
@@ -19,5 +20,7 @@ namespace MathWindow.ViewModel.Components.Data.Fields
 		{
 			Name = Defaults.NoValue, No = new List<string>()
 		};
+
+		public ConfigMargin Margin => Defaults.Config.Margin;
 	}
 }
