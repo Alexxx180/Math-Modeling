@@ -1,6 +1,7 @@
 {
-	"Table": false,
-	"Formula": true,
+	"defaults/table": false,
+	"defaults/continuous": true,
+	"formula/continuous": true,
 	"Numbers": [
 		1, 5, 8, 9, 12, 13, 17, 22,
 		25, 26, 31, 34, 35, 39, 40
