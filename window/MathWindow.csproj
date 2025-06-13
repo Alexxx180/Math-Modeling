@@ -1,0 +1,56 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<RootNamespace>MathWindow</RootNamespace>
+		<UseWPF>true</UseWPF>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ApplicationIcon>Resources\favicon.ico</ApplicationIcon>
+		<Company>EX - Digits</Company>
+		<Authors>Tatarintsev Aleksandr</Authors>
+		<Version>1.0.0</Version>
+		<AssemblyVersion>1.0.0.0</AssemblyVersion>
+		<FileVersion>1.0.0.0</FileVersion>
+		<PackageReleaseNotes>Math Modelling * Released February 19, 2025 *</PackageReleaseNotes>
+	<PackageProjectUrl/>
+		<Copyright>All Rights Reserved</Copyright>
+		<Description>Random value distribution implementation demo: continuous and discrete.</Description>
+		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+		<PackageIcon>favicon.ico</PackageIcon>
+		<PackageIconUrl/>
+		<RepositoryUrl>https://github.com/Alexxx180/Math-Modeling</RepositoryUrl>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Remove="Resources\favicon.ico" />
+		<None Remove="Resources\Wisdom3.ico" />
+		<None Include="LICENSE.md" Pack="True"/>
+		<None Include="favicon.ico" Pack="True"/>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Resource Include="Resources\favicon.ico" />
+		<Resource Include="Resources\Wisdom3.ico" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Update="Properties\Resources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Resources.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Update="Properties\Resources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Resources\Runtime\" />
+	</ItemGroup>
+
+</Project>

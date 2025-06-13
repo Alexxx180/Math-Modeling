@@ -1,0 +1,27 @@
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using MathWindow.ViewModel.Config;
+
+namespace MathWindow.ViewModel.Components.Data.Fields
+{
+	public class GridExpression : NameLabel
+	{
+		private ObservableCollection<List<string>> _no;
+		public ObservableCollection<List<string>> No
+		{
+			get => _no;
+			set
+			{
+				_no = value;
+				OnPropertyChanged();
+			}
+		}
+
+		public static GridExpression Default = new GridExpression
+		{
+			Name = Defaults.NoValue, No = new ObservableCollection<List<string>>()
+		};
+
+		public ConfigMargin Margin => Defaults.Config.Margin;
+	}
+}

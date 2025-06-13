@@ -1,0 +1,22 @@
+{
+	"Common": {
+		"Variant": "{0}: кол-во вариантов {1}\nВариант №{2}",
+		"Exit": "Выход",
+		"Finished": "Завершение работы",
+		"Forward": "Нажмите клавишу Enter для продолжения...",
+		"Invalid": "< ? > Неверный ввод, повторите",
+		"Defaults": "Использовать значения по умолчанию?",
+		"Range": "Конец меньше начала диапазона.\nПоменять их местами?\n"
+	},
+	"table": {
+		"Full Name": "Дискретныe случайные величины",
+		"Table": "Дано: N = {0.init.numbers}, q = {0.init.quantity}, X = {0.math.x}, p = {0.math.p}",
+		"Research": "Коэффициенты:  M = {0.expect:.8}, D = {0.dispersia:.8}, m = {0.eval:.8}, g = {0.ground:.8}"
+	},
+	"continuous": {
+		"Full Name": "Непрерывные случайные величины",
+		"Formula": "Функция: {0.f}, Обратная: {0.G}",
+		"Table": "Дано: N = {0.init.numbers}, q = {0.init.quantity}, X = {0.math.xf}",
+		"Research": "Коэффициенты:  M = {0.expect:.8}, D = {0.dispersia:.8}, m = {0.eval:.8}, g = {0.ground:.8}"
+	}
+}
