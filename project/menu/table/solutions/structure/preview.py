@@ -28,6 +28,12 @@ def _add_table_row(self, row: dict, no: int) -> None:
 	self.r.append(row["next"])
 	row["q"] -= row["columns"]
 
+def _add_if_lesser(self, row: dict) -> None:
+	if self.quantity <= 10:
+		row["next"] = []
+		fill_blanks(row)
+		self.r.append(row["next"])
+
 def _get_table_columns() -> int:
 	return max(len(Resources.Fields["table"]["selection"]["source"]) - 1, 1)
 
@@ -38,3 +44,5 @@ def get_preview(self, math) -> None:
 
 	for number in range(length):
 		_add_table_row(self, row, number)
+
+	_add_if_lesser(self, row)
