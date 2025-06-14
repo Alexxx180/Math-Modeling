@@ -5,10 +5,10 @@
 	"Fields": "texts/fields",
 	"Texts": "texts/labels",
 	"Formula": {
-		"continuous": ["formula/continuous", 40]
+		"continuous": ["formula/continuous"]
 	},
 	"Defaults": {
-		"table": ["defaults/table", 40],
-		"continuous": ["defaults/continuous", 40]
+		"table": ["defaults/table"],
+		"continuous": ["defaults/continuous"]
 	}
 }

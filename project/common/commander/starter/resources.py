@@ -13,6 +13,6 @@ def resource(file, check):
 	if isinstance(file, dict):
 		return extract_resources(file, lambda file: resource(file, check))
 	elif isinstance(file, list):
-		return check(file[0], file[1])
+		return check(file[0])
 	else:
 		return resource_file(file)

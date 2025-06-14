@@ -3,10 +3,10 @@ from menu.model.entry import RandomModelEntryCMD
 from common.handlers.input.specific import setup_input
 from common.handlers.interaction import pause
 from common.commander.starter.api.cui import setup_menu, dropdown
-from common.commander.starter.variants import main, variant_cmd, variant_cui, variant_showcase
+from common.commander.starter.variants import main, variant_look, variant_print, variant_showcase
 
 def api_cmd(kind: str) -> str:
-	main(variant_cmd)
+	main(variant_look)
 	if kind == "model":
 		return RandomModelEntryCMD()
 	else:
@@ -15,7 +15,7 @@ def api_cmd(kind: str) -> str:
 def api_cui() -> None:
 	variant_showcase()
 
-	main(variant_cui)
+	main(variant_print)
 	setup_input()
 	setup_menu()
 	pause()

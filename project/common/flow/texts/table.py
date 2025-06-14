@@ -9,7 +9,7 @@ class Text:
 		self.p = Printer(name).act(print)
 
 	def table(self, args) -> None:
-		#self.p.keys("Table").args(args).print()
+		self.p.keys("Table").args(args).print()
 		return self
 
 	def formula(self, args) -> None:

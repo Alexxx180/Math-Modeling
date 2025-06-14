@@ -1,7 +1,7 @@
 from common.commander.starter.resources import resource_file, resource
 from common.commander.resources import Resources
 
-variant: int = 1
+variant: int = 0
 
 def variant_showcase() -> None:
 	global variant
@@ -19,23 +19,25 @@ def _correct_variant(variants: dict, no: int) -> int:
 	count: int = len(values)
 	return values[get_variant(no, count)]
 
-def _determine_variant(variants: dict, path: str, count: int, start: int = 1) -> int:
+def variant_look(variants: dict, path: str, count: int, start: int = 1) -> int:
 	global variant
 	no: int = get_variant(variant, count, start)
 	return _correct_variant(variants, no) if variants[path] else no + start
 
-def variant_cmd(variants: dict, path: str, count: int) -> dict:
-	no: int = _determine_variant(variants, path, count)
-	return resource_file(f'{path}/{no}')
-
-def variant_cui(variants: dict, path: str, count: int) -> dict:
-	no: int = _determine_variant(variants, path, count)
+def variant_print(variants: dict, path: str, count: int) -> int:
+	no: int = variant_look(variants, path, count)
 	print(Resources.Texts["Common"]["Variant"].format(path, count, no))
-	return resource_file(f'{path}/{no}')
+	return no
 
-def main(variant_check) -> None:
+def check_variant(variants: dict, path: str, check) -> dict:
+	file: dict = resource_file(path)
+	count: int = len(file) - 1
+	no: int = check(variants, path, count)
+	return file[str(no)] # json supports only str
+
+def main(behavior) -> None:
 	manifest: dict = resource_file('manifest')
 	variants: dict = resource_file(manifest["Variants"])
-	check = lambda path, count: variant_check(variants, path, count)
+	check = lambda path: check_variant(variants, path, behavior)
 	for name in ('Texts', 'Fields', 'Hints', 'Enabled', 'Formula', 'Defaults'):
 		setattr(Resources, name, resource(manifest[name], check))
