@@ -14,24 +14,17 @@ class RandomModel:
 		return solve(express(self.F) - r, x)
 
 	def _get_inverse_mul(self) -> list:
-		#f = x**2
-		fInv = Symbol("f^-1") # express(self.f)
-		f = express(self.F)
-		return solve(f * fInv - 1, fInv)
+		fInv = Symbol("f^-1")
+		return solve(express(self.F) * fInv - 1, fInv)
 
 	def get_inverse(self):
 		self.F = str(un_integral(express(self.f)))
-		# inverse: list = self._get_inverse_sum()
 		inverse: list = self._get_inverse_mul()
 		if len(inverse) > self.POSITIVE:
 			self.inverse = inverse[self.POSITIVE]
 		else:
 			self.inverse = inverse[0]
-		# print("INVER: ", self.inverse)
 		self.G = str(self.inverse).replace("x", "r")
-		# print("f: ", self.f)
-		# print("F: ", self.F)
-		# print("G: ", self.G)
 		method = lambdify(r, express(self.G), "numpy")
 		self.method = lambda r: method(r) % self.ab[1] + self.ab[0]
 		return self
