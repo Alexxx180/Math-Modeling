@@ -1,6 +1,6 @@
 from sympy.abc import x, r
-from sympy import solve, lambdify, sqrt, N
-from common.calculus.trigonometry import form, invokation, express, integral
+from sympy import solve, lambdify, sqrt, N, Symbol
+from common.calculus.trigonometry import form, invokation, express, integral, un_integral
 from common.commander.resources import Resources
 
 class RandomModel:
@@ -10,15 +10,30 @@ class RandomModel:
 		self.POSITIVE: int = 1
 		self.get_inverse().expectation().dispersia()
 
+	def _get_inverse_sum(self) -> list:
+		return solve(express(self.F) - r, x)
+
+	def _get_inverse_mul(self) -> list:
+		#f = x**2
+		fInv = Symbol("f^-1") # express(self.f)
+		f = express(self.F)
+		return solve(f * fInv - 1, fInv)
+
 	def get_inverse(self):
-		inverse: list = solve(express(self.f) - r, x)
+		self.F = str(un_integral(express(self.f)))
+		# inverse: list = self._get_inverse_sum()
+		inverse: list = self._get_inverse_mul()
 		if len(inverse) > self.POSITIVE:
 			self.inverse = inverse[self.POSITIVE]
 		else:
 			self.inverse = inverse[0]
 		# print("INVER: ", self.inverse)
-		self.G = str(self.inverse)
-		self.method = lambdify(r, express(self.G), "numpy")
+		self.G = str(self.inverse).replace("x", "r")
+		# print("f: ", self.f)
+		# print("F: ", self.F)
+		# print("G: ", self.G)
+		method = lambdify(r, express(self.G), "numpy")
+		self.method = lambda r: method(r) % self.ab[1] + self.ab[0]
 		return self
 
 	def expectation(self) -> None:
