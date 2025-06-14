@@ -7,21 +7,22 @@ from menu.model.solution import RandomModel
 This program takes a probability value table, generate random numbers.
 Then calculate math expectation, dispersia, and evaluate both results
 """
-def RandomModelReverseMethod(name: str, args: list) -> None:
+def get_table(args: list):
 	adapt: dict = RandomModel.get_adapter(args)
 	model = RandomModel(adapt["ab"])
-	table = RandomDistribution(adapt).set_method(model).start()
+	return RandomDistribution(adapt).set_method(model).start()
+
+def RandomModelReverseMethod(name: str, args: list) -> None:
+	result = [get_table([args[0], args[1], 100, args[2]]),
+		get_table([args[0], args[1], 10000, args[2]])]
 
 	text = Text(name)
-	text.formula(model).table(table).research(table.math)
+	text.formula(result[0].model).table(result[0]).research(result)
 
 	if View('Table', name):
-		text.source(table.init.r)
+		text.source(result[0].init.r)
 
 	text.pause()
 
 def RandomModelReverseMethodCMD(args: list) -> str:
-	adapt: dict = RandomModel.get_adapter(args)
-	model = RandomModel(adapt["ab"])
-	table = RandomDistribution(adapt).set_method(model)
-	return " - ".join(table.start().to_list())
+	return " - ".join(get_table(args).to_list())

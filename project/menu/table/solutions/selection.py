@@ -1,5 +1,5 @@
-from random import random
-from common.commander.resources import Resources
+from menu.table.solutions.structure.preview import get_preview
+from menu.table.solutions.structure.generate import get_random, generate_random_values, sigma
 
 class RandomSelection:
 	def __init__(self, n: int, q: int) -> None:
@@ -7,68 +7,38 @@ class RandomSelection:
 		self.numbers: int = n  # 100 # N
 		self.quantity: int = q # 14 # q
 
+	def preview(self, math) -> None: get_preview(self, math)
 	def generate_values(self, method) -> list:
-		existing: dict = {}
-		x: list = []
-		j: int = 0
-		self.i: list = []
-		for i in range(self.numbers):
-			r: float = method(random())
-			#print("r: ", r)
-			#print("ex: ", existing)
-			if not r in existing:
-				existing[r] = j
-				x.append(r)
-				self.i.append(j)
-				j += 1
-			else:
-				self.i.append(existing[r])
-		return x
+		return generate_random_values(self, method)
 
 	def generate_random(self, method) -> None:
-		self.i = [method(random()) for i in range(self.numbers)]
+		self.i = [get_random(method) for i in range(self.numbers)]
 
-	def sigma(self, formula) -> None: # Σ
-		for j in range(self.numbers): formula(self.i[j])
+	def set_math_expectation(self, math) -> None:
+		if math.expecting == None:
+			sigma(self.numbers, self.i, lambda i: math.expectation(i))
+		else:
+			math.m_expect = math.expecting()
 
-	def preview(self, math) -> None:
-		q: int = self.quantity
-		table: dict = Resources.Fields["table"]
-		columns: int = max(len(table["Source"]) - 1, 1)
-		table_length: int = int(q / columns)
+	def set_dispersia(self, math) -> None:
+		if math.dispersing == None:
+			sigma(self.numbers, self.i, lambda i: math.get_dispersia(i))
+		else:
+			math.dispersia = math.dispersing(math.m_expect)
 
-		if q % columns != 0: table_length += 1
+	def set_math_evaluation(self, math) -> None:
+		sigma(self.numbers, self.i, lambda i: math.evaluation(i))
+		math.evaluation_end(self.numbers)
+		math.set_first_delta()
 
-		x = math.x
-		if hasattr(math, 'xf'):
-			x = math.xf
-
-		for r in range(table_length):
-			row: list = []
-
-			for c in range(min(q, columns)):
-				i: int = self.i[r * columns + c]
-				row.append(x[i])
-
-			for i in range(len(row), columns):
-				row.append(table["No-value"])
-
-			self.r.append(row)
-			q -= columns
+	def set_dispersia_evaluation(self, math) -> None:
+		sigma(self.numbers, self.i, lambda i: math.dispersia_ground(i))
+		math.dispersia_ground_end(self.numbers)
+		math.set_second_delta()
 
 	def calculate(self, math) -> None:
-		if math.expecting == None:
-			self.sigma(lambda i: math.expectation(i))
-		else:
-			math.expect = math.expecting()
-
-		if math.dispersing == None:
-			self.sigma(lambda i: math.get_dispersia(i))
-		else:
-			math.dispersia = math.dispersing(math.expect)
-
-		self.sigma(lambda i: math.evaluation(i))
-		math.evaluation_end(self.numbers)
-		self.sigma(lambda i: math.dispersia_ground(i))
-		math.dispersia_ground_end(self.numbers)
+		self.set_math_expectation(math)
+		self.set_dispersia(math)
+		self.set_math_evaluation(math)
+		self.set_dispersia_evaluation(math)
 		self.preview(math)

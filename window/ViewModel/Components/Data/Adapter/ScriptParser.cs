@@ -57,7 +57,7 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 
 		private void Log(string status, string message)
 		{
-			System.IO.File.WriteAllText($"C:/{status}.txt", message);
+			System.IO.File.WriteAllText($"{Environment.CurrentDirectory}/{status}.txt", message);
 		}
 
 		private void Log(Stopwatch time, string status, string message)

@@ -1,5 +1,4 @@
-$packs = @('prettytable', 'matplotlib', 'numpy', 'inquirer', 'scipy', 'sympy')
-$packs | ForEach-Object { pip install $PSItem }
+$packs = @('prettytable', 'matplotlib', 'numpy', 'inquirer', 'scipy', 'sympy'); $packs | ForEach-Object { pip install $PSItem }
 
 <# Requirements
     prettytable==3.9.0

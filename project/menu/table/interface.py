@@ -8,7 +8,7 @@ Then calculate math expectation, dispersia, and evaluate both results
 """
 def RandomTableReverseMethod(name: str, args: dict) -> None:
 	table = RandomDistribution(args).start()
-	text = Text(name).table(table).research(table.math)
+	text = Text(name).table(table).research([table])
 
 	if View('Table', name):
 		text.source(table.init.r)
