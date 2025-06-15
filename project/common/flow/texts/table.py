@@ -24,6 +24,12 @@ class Text:
 			f1[i] = '%' + ".%df" % (fa[0] if fa[1] else f1[i])
 		return f1
 
+	def format_matrix(f: list, matrix) -> list:
+		for i in range(len(f)):
+			for row in matrix:
+				if row[i] != '':
+					row[i] = f[i] % row[i]
+
 	def research(self, result: list):
 		rows: list = []
 		f: list = Text.format_columns(self.fields["initial"])
@@ -37,10 +43,7 @@ class Text:
 
 	def source(self, matrix):
 		f: list = Text.format_columns(self.fields["selection"])
-		for i in range(len(f)):
-			for row in matrix:
-				if row[i] != '':
-					row[i] = f[i] % row[i]
+		Text.format_matrix(f, matrix)
 		Table(self.fields["selection"]["source"].copy()).rows(matrix).show()
 		return self
 

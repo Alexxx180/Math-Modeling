@@ -1,11 +1,10 @@
 {
-	"format": { "p": 2, "q": 4, "X": 4 },
 	"table": {
 		"initial": {
-			"empty": "", "format": [[8, false],
-					[    2,   4,             4,     4,    4,            4]],
-			"source": ["Результат", "N", "M(X)", "m", "Δ₁=|M(X)-m|", "D(X)", "g", "Δ₂=|D(X)-g|"],
-			"empty": ""
+			"empty": "", "p": 1, "X": 0, "format": [[8, false],
+					[    2,    4,             4,      4,    4,            4]],
+			"source": ["Результат",
+				"N", "M(X)", "m", "Δ₁=|M(X)-m|", "D(X)", "g", "Δ₂=|D(X)-g|"]
 		},
 		"selection": {
 			"empty": "", "format": [[0, true],
@@ -17,7 +16,7 @@
 	},
 	"continuous": {
 		"initial": {
-			"empty": "", "format": [[8, false],
+			"empty": "", "p": 1, "X": 4, "format": [[8, false],
 					[    2,   4,             9,     4,    4,            9]],
 			"source": ["Результат",
 				"N", "M(X)", "m", "Δ₁=|M(X)-m|", "D(X)", "g", "Δ₂=|D(X)-g|"]
@@ -31,7 +30,7 @@
 	},
 	"evenly": {
 		"initial": {
-			"empty": "", "format": [[8, false],
+			"empty": "", "p": 1, "X": 4, "format": [[8, false],
 					[    2,   4,             9,     4,    4,            9]],
 			"source": ["Результат",
 				"N", "M(X)", "m", "Δ₁=|M(X)-m|", "D(X)", "g", "Δ₂=|D(X)-g|"]
