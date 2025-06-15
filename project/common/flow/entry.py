@@ -9,6 +9,6 @@ def AbstractRandomEntry(method, name: str) -> None:
 
 	method(name, args)
 
-def AbstractRandomEntryCMD(method, name: str) -> None:
+def AbstractRandomEntryCMD(method, name: str) -> str:
 	args: list = Resources.Defaults[name]
 	return method(args, name)

@@ -6,5 +6,5 @@ name: str = 'evenly'
 def RandomEvenlyEntry() -> None:
 	AbstractRandomEntry(RandomEvenlyMethod, name)
 
-def RandomEvenlyEntryCMD() -> None:
-	AbstractRandomEntryCMD(RandomEvenlyMethodCMD, name)
+def RandomEvenlyEntryCMD() -> str:
+	return AbstractRandomEntryCMD(RandomEvenlyMethodCMD, name)

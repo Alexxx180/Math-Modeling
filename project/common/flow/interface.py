@@ -13,7 +13,7 @@ def single_row(args, struct, N: int = 100):
 def double_row(args, struct):
 	return [single_row(args, struct)[0], single_row(args, struct, 10000)[0]]
 
-def raw_rows(args, _struct): return RandomDistribution(args).start()
+def raw_rows(args, _struct = None): return RandomDistribution(args).start()
 
 def source_single(result): return result[0]
 def source_whole(result): return result

@@ -6,5 +6,5 @@ name: str = 'table'
 def RandomTableEntry() -> None:
 	AbstractRandomEntry(RandomTableReverseMethod, name)
 
-def RandomTableEntryCMD() -> None:
-	AbstractRandomEntryCMD(RandomTableReverseMethodCMD, name)
+def RandomTableEntryCMD() -> str:
+	return AbstractRandomEntryCMD(RandomTableReverseMethodCMD, name)

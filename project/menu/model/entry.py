@@ -6,5 +6,5 @@ name: str = 'continuous'
 def RandomModelEntry() -> None:
 	AbstractRandomEntry(RandomModelReverseMethod, name)
 
-def RandomModelEntryCMD() -> None:
-	AbstractRandomEntryCMD(RandomModelReverseMethodCMD, name)
+def RandomModelEntryCMD() -> str:
+	return AbstractRandomEntryCMD(RandomModelReverseMethodCMD, name)

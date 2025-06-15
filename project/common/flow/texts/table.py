@@ -21,7 +21,6 @@ class Text:
 		f1: list = fields["format"][1].copy()
 		fa: list = fields["format"][0]
 		for i in range(len(f1)):
-			print("F1: ", f1[i], "- fa1: ", fa[1])
 			f1[i] = '%' + ".%df" % (fa[0] if fa[1] else f1[i])
 		return f1
 
