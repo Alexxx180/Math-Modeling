@@ -32,10 +32,15 @@ class Text:
 			m = struct.math
 			rows.append([i.numbers, f[0] % m.m_expect, f[1] % m.m_eval, f[2] % m.delta[1],
 				f[3] % m.dispersia, f[4] % m.ground, f[5] % m.delta[2]])
-		Table(self.fields["initial"]["source"].copy()).floats("0.4f").rows(rows).show()
+		Table(self.fields["initial"]["source"].copy()).rows(rows).show() # floats("0.4f")
 		return self
 
 	def source(self, matrix):
+		f: list = Text.format_columns(self.fields["selection"])
+		for i in range(len(f)):
+			for row in matrix:
+				if row[i] != '':
+					row[i] = f[i] % row[i]
 		Table(self.fields["selection"]["source"].copy()).rows(matrix).show()
 		return self
 

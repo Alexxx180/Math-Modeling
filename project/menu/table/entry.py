@@ -14,4 +14,4 @@ def RandomTableEntry() -> None:
 
 def RandomTableEntryCMD() -> str:
 	args: list = Resources.Defaults[name]
-	return RandomTableReverseMethodCMD(args)
+	return RandomTableReverseMethodCMD(args, name)

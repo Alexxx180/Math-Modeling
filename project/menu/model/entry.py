@@ -14,4 +14,4 @@ def RandomModelEntry() -> None:
 
 def RandomModelEntryCMD() -> None:
 	args: list = Resources.Defaults[name]
-	return RandomModelReverseMethodCMD(args)
+	return RandomModelReverseMethodCMD(args, name)

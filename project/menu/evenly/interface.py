@@ -13,7 +13,7 @@ def get_table(args: list):
 
 def RandomEvenlyMethod(name: str, args: list) -> None:
 	result = [get_table([args[0], args[1], 100, args[2]])]
-#    , get_table([args[0], args[1], 10000, args[2]])]
+	#, get_table([args[0], args[1], 10000, args[2]])]
 
 	text = Text(name)
 	text.formula(result[0].model).table(result[0]).research(result)
@@ -23,5 +23,5 @@ def RandomEvenlyMethod(name: str, args: list) -> None:
 
 	text.pause()
 
-def RandomEvenlyMethodCMD(args: list) -> str:
-	return " - ".join(get_table(args).to_list())
+def RandomEvenlyMethodCMD(args: list, name: str) -> str:
+	return " - ".join(get_table(args).to_list(name))

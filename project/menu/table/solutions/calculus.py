@@ -1,5 +1,6 @@
 from typing import Callable
-from menu.table.solutions.structure.lists import form
+from common.commander.resources import Resources
+from common.flow.texts.table import Text
 
 class RandomCalculus:
 	def __init__(self, x: list, p: list) -> None:
@@ -16,8 +17,11 @@ class RandomCalculus:
 	def set_expecting(self, method) -> None: self.expecting = method
 	def set_dispersing(self, method) -> None: self.dispersing = method
 
-	def to_list(self) -> list: return [form(self.m_expect),
-		form(self.dispersia), form(self.m_eval), form(self.ground)]
+	def to_list(self, name: str) -> list:
+		f: list = Text.format_columns(Resources.Fields[name]["initial"])
+		return [f[0] % (self.m_expect), f[1] % (self.m_eval),
+			f[2] % (self.delta[1]), f[3] % (self.dispersia),
+			f[4] % (self.ground), f[5] % (self.delta[2])]
 
 	def expectation(self, k: int) -> None: # Σ(xₖpₖ)
 		self.m_expect += self.x[k] * self.p[k]

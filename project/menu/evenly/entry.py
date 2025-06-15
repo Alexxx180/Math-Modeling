@@ -14,4 +14,4 @@ def RandomEvenlyEntry() -> None:
 
 def RandomEvenlyEntryCMD() -> None:
 	args: list = Resources.Defaults[name]
-	return RandomEvenlyMethodCMD(args)
+	return RandomEvenlyMethodCMD(args, name)

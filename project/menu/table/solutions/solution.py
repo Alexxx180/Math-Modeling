@@ -10,8 +10,8 @@ class RandomDistribution:
 		self.init = RandomSelection(args["N"], args["q"])
 		self.method = self.reverse_method
 
-	def to_list(self) -> list:
-		return convert_to_list(self)
+	def to_list(self, name: str) -> list:
+		return convert_to_list(self, name)
 
 	def set_method(self, model) -> None:
 		self.model = model
@@ -26,7 +26,7 @@ class RandomDistribution:
 	def generate_values(self, method) -> None:
 		x: list = self.init.generate_values(method)
 		self.math.x = x
-		self.math.xf = enum_format(x)
+		# self.math.xf = enum_format(x)
 
 	def start(self):
 		if len(self.math.x) == 0:

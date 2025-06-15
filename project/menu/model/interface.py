@@ -24,5 +24,5 @@ def RandomModelReverseMethod(name: str, args: list) -> None:
 
 	text.pause()
 
-def RandomModelReverseMethodCMD(args: list) -> str:
-	return " - ".join(get_table(args).to_list())
+def RandomModelReverseMethodCMD(args: list, name: str) -> str:
+	return " - ".join(get_table(args).to_list(name))
