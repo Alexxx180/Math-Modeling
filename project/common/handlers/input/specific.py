@@ -15,8 +15,10 @@ def request_n(start: int, end: int) -> int:
     count: callable = lambda n: n < start or n > end
     return specify(int, count, ('n', 0), 'Wrong n', start, end)
 
+def _prompt(name: str): return prompt(Resources.Queries[name])[name]
+
 def pair(convert: callable, start: str, end: str):
-    query: callable = lambda name: convert(prompt(Resources.Queries[name])[name])
+    query: callable = lambda name: convert(_prompt(name))
     a, b = query(start), query(end)
 
     while b < a:
@@ -29,18 +31,16 @@ def pair(convert: callable, start: str, end: str):
 
 def formulas(name: str) -> str:
     result: str = ''
-    query: callable = lambda: prompt(Resources.Queries[name])[name]
-
+    query: callable = lambda: _prompt(name)
     while result == '': result = query()
     return result
 
-def setup_input(queries: dict):
+def setup_input():
+    queries: dict = Resources.at('resources/texts/queries.json')
     for argument, message in queries.items():
         Resources.Queries[argument] = [Text(argument, message=message)]
-    rauss = 'Rauss'
-    hurwitz = 'Hurwitz'
 
     Resources.Input = {
-        rauss: lambda: formulas(rauss),
-        hurwitz: lambda: formulas(hurwitz),
+        'Rauss': lambda: formulas('Rauss'),
+        'Hurwitz': lambda: formulas('Hurwitz'),
     }

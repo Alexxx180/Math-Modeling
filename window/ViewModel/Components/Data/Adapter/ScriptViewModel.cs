@@ -113,7 +113,7 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 			foreach(string kind in parser.Kinds)
 				_model.Add(GetModel(parser.Output(kind), kind));
 
-			return new MainViewModel { Table = _model[0], Model = _model[1] };
+			return new MainViewModel { Table = _model[0], Model = _model[1], Evenly = _model[2] };
 		}
 	}
 }

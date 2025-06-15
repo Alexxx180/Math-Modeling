@@ -107,7 +107,12 @@
 								<ContentControl Template="{StaticResource ExpressFile}" DataContext="{Binding Path=Model}"/>
 							</TabItem.Content>
 						</TabItem>
-					</TabControl>
+                        <TabItem Header="Равномерное распределение">
+                            <TabItem.Content>
+                                <ContentControl Template="{StaticResource ExpressFile}" DataContext="{Binding Path=Evenly}"/>
+                            </TabItem.Content>
+                        </TabItem>
+                    </TabControl>
 				</Grid>
 			</DataTemplate>
 		</ResourceDictionary>
