@@ -14,11 +14,13 @@ namespace MathWindow.ViewModel.Components
 				{
 					Table = FileViewModel.Default,
 					Model = FileViewModel.Default,
-				};
+                    Evenly = FileViewModel.Default,
+                };
 			}
 		}
 
 		public FileViewModel Table { get; set; }
 		public FileViewModel Model { get; set; }
-	}
+        public FileViewModel Evenly { get; set; }
+    }
 }

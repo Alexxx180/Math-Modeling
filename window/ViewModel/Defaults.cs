@@ -27,8 +27,9 @@ namespace MathWindow.ViewModel
 			Fields = new Dictionary<string, string[]>
 			{
 				{ "table", GetLines("fields/table.txt") },
-				{ "model", GetLines("fields/model.txt") }
-			};
+				{ "model", GetLines("fields/model.txt") },
+                { "evenly", GetLines("fields/evenly.txt") }
+            };
 		}
 
 		public Dictionary<string, string[]> Fields { get; set; }

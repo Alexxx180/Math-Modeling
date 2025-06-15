@@ -27,7 +27,7 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 		}
 
 		public ScriptParser() {
-			_kinds = new string[] { "table", "model" };
+			_kinds = new string[] { "table", "model", "evenly" };
 			_result = new Dictionary<string, string>();
 			_script = NoPath(Search.File(_app, _script), nameof(_script));
 			_interpreter = NoPath("C:\\Python312\\python.exe", nameof(_interpreter)); // Defaults.Config.Paths.Python
@@ -104,7 +104,8 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 		{
 			await Task.Run(async() => { await Parse("table"); });
 			await Task.Run(async() => { await Parse("model"); });
-		}
+            await Task.Run(async() => { await Parse("evenly"); });
+        }
 
 	}
 }
