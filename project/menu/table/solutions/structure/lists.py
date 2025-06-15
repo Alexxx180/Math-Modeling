@@ -18,7 +18,8 @@ def _list_to_str(value: list, n: int = -1) -> str:
 
 def convert_to_list(struct, name: str) -> list:
 	f: dict = Resources.Fields[name]["initial"]
-	result: list = struct.math.to_list(name)
+	result: list = [str(struct.ab[0]), str(struct.ab[1])] if hasattr(struct, "ab") else []
+	result.extend(struct.math.to_list(name))
 	result.append(str(struct.init.numbers))
 	result.append(str(struct.init.quantity))
 	result.append(_list_to_str(struct.math.x, f["X"]))
