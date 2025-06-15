@@ -30,7 +30,7 @@ namespace MathWindow.ViewModel.Components.Data.Adapter
 			_kinds = new string[] { "table", "model", "evenly" };
 			_result = new Dictionary<string, string>();
 			_script = NoPath(Search.File(_app, _script), nameof(_script));
-			_interpreter = NoPath("C:\\Python312\\python.exe", nameof(_interpreter)); // Defaults.Config.Paths.Python
+			_interpreter = NoPath(Defaults.Config.Paths.Python, nameof(_interpreter));
 		}
 
 		private string NoPath(string path, string name)
