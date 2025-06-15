@@ -22,7 +22,6 @@ class Text:
 		fa: list = fields["format"][0]
 		for i in range(len(f1)):
 			f1[i] = '%' + ".%df" % (fa[0] if fa[1] else f1[i])
-		print("FORMAT: ", f1)
 		return f1
 
 	def research(self, result: list):

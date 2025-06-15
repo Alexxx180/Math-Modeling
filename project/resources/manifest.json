@@ -9,6 +9,7 @@
 	},
 	"Defaults": {
 		"table": ["defaults/table"],
-		"continuous": ["defaults/continuous"]
+		"continuous": ["defaults/continuous"],
+		"evenly": ["defaults/evenly"]
 	}
 }

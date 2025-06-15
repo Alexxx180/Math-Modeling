@@ -1,5 +1,6 @@
 {
 	"defaults/table": false,
+	"defaults/evenly": false,
 	"defaults/continuous": true,
 	"formula/continuous": true,
 	"Numbers": [
