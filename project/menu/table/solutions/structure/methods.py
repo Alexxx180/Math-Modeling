@@ -1,6 +1,6 @@
 def get_probability_sum(probability: list) -> float:
 	segment: float = sum(probability)
-	if segment != 1: print("Probability sum is: ", segment)
+	# if segment != 1: print("Probability sum is: ", segment)
 	return segment
 
 def method_reverse(self, value: float) -> float:
