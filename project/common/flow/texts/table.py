@@ -18,9 +18,10 @@ class Text:
 
 	@staticmethod
 	def format_columns(fields) -> list:
-		f1: list = fields["format"][1]
+		f1: list = fields["format"][1].copy()
 		fa: list = fields["format"][0]
 		for i in range(len(f1)):
+			print("F1: ", f1[i], "- fa1: ", fa[1])
 			f1[i] = '%' + ".%df" % (fa[0] if fa[1] else f1[i])
 		return f1
 
@@ -38,7 +39,7 @@ class Text:
 			m = struct.math
 			rows.append([i.numbers, f[0] % m.m_expect, f[1] % m.m_eval, f[2] % m.delta[1],
 				f[3] % m.dispersia, f[4] % m.ground, f[5] % m.delta[2]])
-		Table(self.fields["initial"]["source"].copy()).rows(rows).show() # floats("0.4f")
+		Table(self.fields["initial"]["source"].copy()).rows(rows).show()
 		return self
 
 	def source(self, matrix):

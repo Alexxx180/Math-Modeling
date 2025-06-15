@@ -1,19 +1,12 @@
-from common.commander.switch import View
-from common.flow.texts.table import Text
-from menu.table.solutions.solution import RandomDistribution
+from common.flow.interface import AbstractRandomMethod, get_table, single_row, double_row, raw_rows, source_single, source_whole, formuled, discrete
+from menu.evenly.solution import RandomEvenly
 
 """
 This program takes a probability value table, generate random numbers.
 Then calculate math expectation, dispersia, and evaluate both results
 """
 def RandomTableReverseMethod(name: str, args: dict) -> None:
-	table = RandomDistribution(args).start()
-	text = Text(name).table(table).research([table])
-
-	if View('Table', name):
-		text.source(table.init.r)
-
-	text.pause()
+	AbstractRandomMethod(name, args, raw_rows, discrete, source_whole)
 
 def RandomTableReverseMethodCMD(args: dict, name: str) -> str:
-	return " - ".join(RandomDistribution(args).start().to_list(name))
+	return " - ".join(raw_rows(args).to_list(name))
