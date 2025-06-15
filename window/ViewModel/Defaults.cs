@@ -18,6 +18,10 @@ namespace MathWindow.ViewModel
 			return File.ReadLines(Path.Combine(Runtime, file)).ToArray();
 		}
 
+		public static string GetLine(string file) {
+			return File.ReadAllText(Path.Combine(Runtime, file));
+		}
+
 		private Defaults()
 		{
 			Fonts = new ConfigFonts(GetLines($"custom/fonts.txt"));
