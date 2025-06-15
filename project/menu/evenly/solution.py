@@ -1,8 +1,3 @@
-# from sympy.abc import x, r
-# from sympy import solve, lambdify, sqrt, N, Symbol
-# from common.calculus.trigonometry import form, invokation, express, integral, un_integral
-# from common.commander.resources import Resources
-
 class RandomEvenly:
 	def __init__(self, ab: tuple) -> None:
 		self.fx: str = "a + rᵢ(b - a)"
@@ -14,7 +9,6 @@ class RandomEvenly:
 
 	def get_method(self):
 		self.method = lambda r: self.ab[0] + r * (self.ab[1] - self.ab[0])
-		# % self.ab[1] + self.ab[0]
 		return self
 
 	def expectation(self) -> None:

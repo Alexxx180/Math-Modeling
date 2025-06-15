@@ -17,12 +17,14 @@ def get_variant(no: int, count: int, start: int = 0) -> int:
 def _correct_variant(variants: dict, no: int) -> int:
 	values: list = variants["Numbers"]
 	count: int = len(values)
-	return values[get_variant(no, count)]
+	return no if no == 0 else values[get_variant(no - 1, count)]
 
-def variant_look(variants: dict, path: str, count: int, start: int = 1) -> int:
+def variant_look(variants: dict, path: str, count: int) -> int:
 	global variant
-	no: int = get_variant(variant, count, start)
-	return _correct_variant(variants, no) if variants[path] else no + start
+#	print("VAR: ", variant)
+	no: int = get_variant(variant, count)
+#	print("VAR: NO: ", no)
+	return _correct_variant(variants, no) if variants[path] else no
 
 def variant_print(variants: dict, path: str, count: int) -> int:
 	no: int = variant_look(variants, path, count)

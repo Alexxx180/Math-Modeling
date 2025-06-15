@@ -5,6 +5,7 @@ from menu.table.solutions.structure.methods import method_reverse
 
 class RandomDistribution:
 	def __init__(self, args: dict) -> None:
+		if "ab" in args: self.ab = args["ab"]
 		self.math = RandomCalculus(args["X"], args["p"])
 		self.init = RandomSelection(args["N"], args["q"])
 		self.method = self.reverse_method
