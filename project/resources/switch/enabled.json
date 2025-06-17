@@ -1,7 +1,7 @@
 {
 	"Table": {
-		"table": true,
-		"continuous": true,
-		"evenly": true
+		"table": false,
+		"continuous": false,
+		"evenly": false
 	}
 }

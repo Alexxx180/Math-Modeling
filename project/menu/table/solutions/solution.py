@@ -23,7 +23,7 @@ class RandomDistribution:
 		return self
 
 	def reverse_method(self, value: float) -> float:
-		return method_reverse(self, value)
+		return method_reverse(self, value) # % float(self.ab[1]) + self.ab[0]
 
 	def generate_values(self, method) -> None:
 		x: list = self.init.generate_values(method)

@@ -32,18 +32,18 @@ class RandomCalculus:
 	@staticmethod
 	def table_eval(self, math) -> float:
 		result: float = 0
-		k: list = RandomCalculus.k_list(math.x, self.i)
+		self.k: list = RandomCalculus.k_list(math.x, self.i)
 		for i in range(len(math.x)):
-			result += math.x[i] * k[i]
+			result += math.x[i] * self.k[i]
 		result /= self.numbers
 		return result
 
 	@staticmethod
 	def table_diseval(self, math) -> float:
 		result: float = 0
-		k: list = RandomCalculus.k_list(math.x, self.i)
+		self.k: list = RandomCalculus.k_list(math.x, self.i)
 		for i in range(len(math.x)):
-			result += (math.x[i] ** 2) * k[i]
+			result += (math.x[i] ** 2) * self.k[i]
 		result /= self.numbers
 		return result
 

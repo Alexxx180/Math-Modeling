@@ -10,15 +10,16 @@
 	},
 	"table": {
 		"Full Name": "Дискретныe случайные величины",
-		"Table": "Дано: q = {0.init.quantity}, X = {0.math.x}, p = {0.math.p}",
-		"Table_commented": "N = {0.init.numbers},",
+		"Table": "Дано: X = {0.math.x}, p = {0.math.p}, K = {0.init.k}",
+		"Table_commented": "q = {0.init.quantity}, N = {0.init.numbers},",
 		"Research": "Коэффициенты:  M = {0.expect:.8}, D = {0.dispersia:.8}, m = {0.eval:.8}, g = {0.ground:.8}"
 	},
 	"continuous": {
 		"Full Name": "Непрерывные случайные величины",
-		"Formula": "Плотность: {0.f}, Функция: {0.F}, Обратная: {0.G}",
-		"Table": "Дано: q = {0.init.quantity}, a = {0.ab[0]}, b = {0.ab[1]}",
-		"Table_commented": "N = {0.init.numbers}, X = {0.math.xf}",
+		"Formula": "Плотность: {0.f}, Функция: {0.F}",
+		"Formula_commented": ", Обратная: {0.G}",
+		"Table": "Дано: a = {0.ab[0]}, b = {0.ab[1]}",
+		"Table_commented": "q = {0.init.quantity}, N = {0.init.numbers}, X = {0.math.xf}",
 		"Research": "Коэффициенты:  M = {0.expect:.8}, D = {0.dispersia:.8}, m = {0.eval:.8}, g = {0.ground:.8}"
 	},
 	"evenly": {
