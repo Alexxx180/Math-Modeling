@@ -18,6 +18,8 @@ class RandomDistribution:
 		self.method = model.method
 		self.math.set_expecting(model.expecting)
 		self.math.set_dispersing(model.dispersing)
+		self.math.set_evaluating(model.evaluating)
+		self.math.set_dis_evaluating(model.dis_evaluating)
 		return self
 
 	def reverse_method(self, value: float) -> float:

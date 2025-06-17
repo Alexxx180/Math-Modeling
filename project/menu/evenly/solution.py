@@ -5,7 +5,7 @@ class RandomEvenly:
 		self.fd: str = "(b - a²) / 12"
 		self.ab: tuple = ab
 		self.POSITIVE: int = 1
-		self.get_method().expectation().dispersia()
+		self.get_method().expectation().dispersia().evaluation().dis_evaluation()
 
 	def get_method(self):
 		self.method = lambda r: self.ab[0] + r * (self.ab[1] - self.ab[0])
@@ -17,6 +17,14 @@ class RandomEvenly:
 
 	def dispersia(self) -> None:
 		self.dispersing = lambda e: (self.ab[0] + self.ab[1] ** 2) / 12
+		return self
+
+	def evaluation(self) -> None:
+		self.evaluating = None
+		return self
+
+	def dis_evaluation(self) -> None:
+		self.dis_evaluating = None
 		return self
 
 	@staticmethod
