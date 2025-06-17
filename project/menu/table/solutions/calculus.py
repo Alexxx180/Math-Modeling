@@ -30,7 +30,10 @@ class RandomCalculus:
 		self.delta[1] = abs(self.m_expect - self.m_eval)
 
 	def get_dispersia(self, k: int) -> None: # Σ(pₖ(xₖ - M)²)
-		self.dispersia += self.p[k] * (self.x[k] - self.m_expect) ** 2
+		self.dispersia += self.p[k] * self.x[k] ** 2
+
+	def get_dispersia_end(self) -> None: # Σ(pₖ(xₖ - M)²)
+		self.dispersia -= self.m_expect ** 2
 
 	def set_second_delta(self) -> None: # Δ₂=|D(X)-g|
 		self.delta[2] = abs(self.dispersia - self.ground)

@@ -16,13 +16,16 @@ class RandomSelection:
 
 	def set_math_expectation(self, math) -> None:
 		if math.expecting == None:
-			sigma(self.numbers, self.i, lambda i: math.expectation(i))
+			# sigma(self.numbers, self.i, lambda i: math.expectation(i))
+			for i in range(0, len(math.x)): math.expectation(i)
 		else:
 			math.m_expect = math.expecting()
 
 	def set_dispersia(self, math) -> None:
 		if math.dispersing == None:
-			sigma(self.numbers, self.i, lambda i: math.get_dispersia(i))
+			# sigma(self.numbers, self.i, lambda i: math.get_dispersia(i))
+			for i in range(0, len(math.x)): math.get_dispersia(i)
+			math.get_dispersia_end()
 		else:
 			math.dispersia = math.dispersing(math.m_expect)
 

@@ -31,4 +31,6 @@ def integral(formula: str, ab: tuple) -> callable:
 	return integrate(formula, (x, ab[0], ab[1]))
 
 def un_integral(formula: str):
-    return integrate(formula, x)
+	print("FORMULA: ", formula)
+	print("INTEGRATED: ", integrate(formula, x))
+	return integrate(formula, x)

@@ -3,7 +3,7 @@ from common.commander.resources import Resources
 def fill_values(self, row: dict, cell: int) -> None:
 	count: int = min(row["q"], row["columns"])
 	for column in range(count):
-		i: int = self.i[cell + column]
+		i: int = self.i[min(cell + column, len(self.i) - 1)]
 		row["next"].append(row["x"][i])
 
 def fill_blanks(row: dict) -> None:
