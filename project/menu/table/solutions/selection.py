@@ -30,13 +30,19 @@ class RandomSelection:
 			math.dispersia = math.dispersing(math.m_expect)
 
 	def set_math_evaluation(self, math) -> None:
-		sigma(self.numbers, self.i, lambda i: math.evaluation(i))
+		if math.evaluating == None:
+			sigma(self.numbers, self.i, lambda i: math.evaluation(i))
+		else:
+			math.m_eval = math.evaluating(self, math)
 		math.evaluation_end(self.numbers)
 		math.set_first_delta()
 
 	def set_dispersia_evaluation(self, math) -> None:
-		sigma(self.numbers, self.i, lambda i: math.dispersia_ground(i))
-		math.dispersia_ground_end(self.numbers)
+		if math.dis_evaluating == None:
+			sigma(self.numbers, self.i, lambda i: math.dispersia_ground(i))
+			math.dispersia_ground_end(self.numbers)
+		else:
+			math.ground = math.dis_evaluating(self, math)
 		math.set_second_delta()
 
 	def calculate(self, math) -> None:

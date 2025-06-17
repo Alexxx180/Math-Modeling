@@ -8,7 +8,7 @@ class RandomModel:
 		self.f: str = Resources.Formula["continuous"]
 		self.ab: tuple = ab
 		self.POSITIVE: int = 1
-		self.get_inverse().expectation().dispersia()
+		self.get_inverse().expectation().dispersia().evaluation().dis_evaluation()
 
 	def _get_inverse_sum(self) -> list:
 		return solve(express(self.F) - r, x)
@@ -39,6 +39,14 @@ class RandomModel:
 		formula: str = "(x ** 2) * (%s)" % self.f
 		self.d = integral(express(formula), self.ab)
 		self.dispersing = lambda e: N(self.d - e ** 2)
+		return self
+
+	def evaluation(self) -> None:
+		self.evaluating = None
+		return self
+
+	def dis_evaluation(self) -> None:
+		self.dis_evaluating = None
 		return self
 
 	@staticmethod
