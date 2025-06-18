@@ -16,7 +16,7 @@
 	},
 	"continuous": {
 		"Full Name": "Непрерывные случайные величины",
-		"Formula": "Плотность: {0.f}, Функция: {0.F}",
+		"Formula": "Плотность: {0.f}, Функция: {0.F}, Обратная: {0.G}",
 		"Formula_commented": ", Обратная: {0.G}",
 		"Table": "Дано: a = {0.ab[0]}, b = {0.ab[1]}",
 		"Table_commented": "q = {0.init.quantity}, N = {0.init.numbers}, X = {0.math.xf}",

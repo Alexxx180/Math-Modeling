@@ -24,7 +24,8 @@ class RandomModel:
 
 	def get_inverse(self):
 		self.F = str(un_integral(express(self.f))) + str(self.ab[0] * (-1))
-		inverse: list = self._get_inverse_mul()
+		#inverse: list = self._get_inverse_mul()
+		inverse: list = self._get_inverse_sum()
 		if len(inverse) > self.POSITIVE:
 			self.inverse = inverse[self.POSITIVE]
 		else:

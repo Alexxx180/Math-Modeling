@@ -94,7 +94,38 @@
 				</ScrollViewer>
 			</ControlTemplate>
 
-			<DataTemplate DataType="{x:Type vm:MainViewModel}">
+            <ControlTemplate x:Key="ExpressNormal">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <StackPanel.Resources>
+                            <Style TargetType="{x:Type ListBox}">
+                                <Setter Property="Margin" Value="10,5,10,5"/>
+                            </Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Margin" Value="{Binding Path=Margin.Overall}"/>
+                                <Setter Property="FontFamily" Value="{Binding Path=Fonts.Overall}"/>
+                            </Style>
+                        </StackPanel.Resources>
+
+                        <TextBlock Text="Расчет"/>
+                        <ListBox FontFamily="{Binding Path=Fonts.Calculus}" Background="{Binding Colors.Calculus}" ItemTemplate="{StaticResource ExpressNumber}" ItemsSource="{Binding Path=Data.Calculus}">
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel/>
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                        </ListBox>
+
+                        <TextBlock Text="Данные"/>
+                        <ListBox FontFamily="{Binding Path=Fonts.Data}" Background="{Binding Colors.Data}" ItemTemplate="{StaticResource ExpressList}" ItemsSource="{Binding Path=Data.Data}" />
+
+                        <TextBlock Text="Результат"/>
+                        <ListBox FontFamily="{Binding Path=Fonts.Result}" Background="{Binding Colors.Result}" ItemTemplate="{StaticResource ExpressGrid}" ItemsSource="{Binding Path=Data.Result}" />
+                    </StackPanel>
+                </ScrollViewer>
+            </ControlTemplate>
+
+            <DataTemplate DataType="{x:Type vm:MainViewModel}">
 				<Grid>
 					<TabControl>
 						<TabItem Header="Дискретная модель">
@@ -107,9 +138,24 @@
 								<ContentControl Template="{StaticResource ExpressFile}" DataContext="{Binding Path=Model}"/>
 							</TabItem.Content>
 						</TabItem>
-                        <TabItem Header="Равномерное распределение">
+                        <TabItem Header="Прототип">
                             <TabItem.Content>
                                 <ContentControl Template="{StaticResource ExpressFile}" DataContext="{Binding Path=Evenly}"/>
+                            </TabItem.Content>
+                        </TabItem>
+                        <TabItem Header="Равномерное распределение">
+                            <TabItem.Content>
+                                <ContentControl Template="{StaticResource ExpressFile}" DataContext="{Binding Path=CommonEvenly}"/>
+                            </TabItem.Content>
+                        </TabItem>
+                        <TabItem Header="Показательное распределение">
+                            <TabItem.Content>
+                                <ContentControl Template="{StaticResource ExpressFile}" DataContext="{Binding Path=Normal}"/>
+                            </TabItem.Content>
+                        </TabItem>
+                        <TabItem Header="Нормальное респределение">
+                            <TabItem.Content>
+                                <ContentControl Template="{StaticResource ExpressNormal}" DataContext="{Binding Path=Normal}"/>
                             </TabItem.Content>
                         </TabItem>
                     </TabControl>
