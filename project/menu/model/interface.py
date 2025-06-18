@@ -1,4 +1,4 @@
-from common.flow.interface import AbstractRandomMethod, get_table, single_row, double_row, raw_rows, source_single, source_whole, formuled, discrete
+from common.flow.interface import AbstractRandomMethod, get_table, single_row, double_row, triple_row, raw_rows, source_single, source_whole, formuled, discrete
 from menu.model.solution import RandomModel
 
 """
